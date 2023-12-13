@@ -10,8 +10,7 @@
 ## Change power management
 
 - show battery percentage, auto suspend only on battery power
-- fix suspend freeze from nvidia 
-	- https://forums.developer.nvidia.com/t/fixed-suspend-resume-issues-with-the-driver-version-470/187150/6
+- fix suspend freeze from nvidia
 	- https://forum.endeavouros.com/t/how-to-fix-the-sleep-suspend-issue-glitch-with-crashing-nvidia-propietary-drivers-and-x11-wayland-on-kde-plasma-arch-endeavouros/42303/3
 	
 ## Install softwares
