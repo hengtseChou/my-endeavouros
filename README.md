@@ -97,6 +97,7 @@ systemd-boot
 - r
 - rstudio-desktop-bin (AUR)
 - vscode-studio-code-bin (AUR)
+- docker
 
 ## music streaming
 
@@ -160,6 +161,23 @@ systemd-boot
 
 - just perfection: skip overview when login (also in dash to dock appearance section), windoew demands attention focus
 - center new window
+
+## systemctl
+
+### fix nvidia-related issues ([link](https://forum.endeavouros.com/t/how-to-fix-the-sleep-suspend-issue-glitch-with-crashing-nvidia-propietary-drivers-and-x11-wayland-on-kde-plasma-arch-endeavouros/42303/3))
+
+```
+sudo systemctl enable nvidia-suspend.service
+sudo systemctl enable nvidia-hibernate.service
+sudo systemctl enable nvidia-resume.service
+```
+
+## docker
+
+```
+sudo systemctl enable docker.service
+sudo usermod -aG docker $USER # to run docker without sudo
+```
 
 # My neofetch
 
