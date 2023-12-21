@@ -40,7 +40,7 @@ systemd-boot
 ## shell & terminal
 
 - zsh
-- oh-my-zsh
+- oh-my-zsh (-> powerlevel10k)
 - gnome-terminal
 
 ## customizing gnome
@@ -51,10 +51,21 @@ systemd-boot
 - touchegg
 - dconf-editor
 
-## build system
+## build system & utilities
 
 - cmake
 - electron25
+- gcc-fortran
+- gdal
+- python-pipx
+- python-build
+- python-setuptools
+
+## developement
+
+- r
+- rstudio-desktop-bin (AUR)
+- vscode-studio-code-bin (AUR)
 
 ## system info
 
@@ -62,6 +73,7 @@ systemd-boot
 - btop
 - neofetch
 - baobab
+- ncdu
 - hardinfo (AUR)
 - cpu-x (AUR)
 
@@ -92,12 +104,6 @@ systemd-boot
 
 - chromium
 
-## developement
-
-- r
-- rstudio-desktop-bin (AUR)
-- vscode-studio-code-bin (AUR)
-
 ## music streaming
 
 - ncspot
@@ -112,6 +118,23 @@ systemd-boot
 
 - bleachbit
 
+
+## pipx
+
+- twine
+- poetry
+- trash-cli
+
+## CLI app
+
+- prettier
+- github-cli
+- fast (AUR)
+- speedtest-cli
+- xcolor
+- zoxide
+- lsd
+
 ## others
 
 - font-manager
@@ -121,9 +144,8 @@ systemd-boot
 - angrysearch (AUR)
 - zotero (AUR)
 - marker
-- xcolor
 - vlc
-- prettier
+
 
 ## gnome-extensions
 
