@@ -30,7 +30,7 @@ GNOME
 
 systemd-boot
 
-# Add software
+# Software
 
 ## input method
 
@@ -66,6 +66,7 @@ systemd-boot
 - r
 - rstudio-desktop-bin (AUR)
 - vscode-studio-code-bin (AUR)
+- docker
 
 ## system info
 
@@ -95,7 +96,7 @@ systemd-boot
 
 - libreoffice-fresh
 
-## App launcher & Appimage launcher
+## app launcher & appimage launcher
 
 - rofi
 - appimagelauncher (AUR)
@@ -116,7 +117,7 @@ systemd-boot
 - ncspot
 - monophony (AUR)
 
-## GUI for package manager
+## gui for package manager
 
 - octopi (AUR)
 - bauh (AUR)
@@ -125,14 +126,13 @@ systemd-boot
 
 - bleachbit
 
-
 ## pipx
 
 - twine
 - poetry
 - trash-cli
 
-## CLI app
+## cli app
 
 - prettier
 - github-cli
@@ -153,28 +153,25 @@ systemd-boot
 - marker
 - vlc
 
+# Gnome-extensions (by uuid)
 
-## gnome-extensions
-
-- user-theme
-- appindicatorsupport
-- dash-to-dock
-- blur-my-shell
-- Vitals
-- just-perfection-desktop
-- AlphabeticalAppGrid
-- x11gestures
-- arch-update
-- notification-timeout
-- drive-menu
+- user-theme@gnome-shell-extensions.gcampax.github.com
+- appindicatorsupport@rgcjonas.gmail.com
+- dash-to-dock@micxgx.gmail.com
+- blur-my-shell@aunetx
+- Vitals@CoreCoding.com
+- just-perfection-desktop@just-perfection
+- AlphabeticalAppGrid@stuarthayhurst
+- x11gestures@joseexposito.github.io
+- notification-timeout@chlumskyvaclav.gmail.com
+- drive-menu@gnome-shell-extensions.gcampax.github.com
+- arch-update@RaphaelRochet
 
 # Tweak settings
 
 ## Change power management
 
 - show battery percentage, auto suspend only on battery power
-- fix suspend freeze from nvidia
-  - https://forum.endeavouros.com/t/how-to-fix-the-sleep-suspend-issue-glitch-with-crashing-nvidia-propietary-drivers-and-x11-wayland-on-kde-plasma-arch-endeavouros/42303/3
 
 ## keyboard shortcut
 
