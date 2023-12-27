@@ -14,14 +14,8 @@ sudo pacman -Syu --noconfirm
 sudo pacman -S --noconfirm fcitx5-im fcitx5-chewing
 echo -e "GTK_IM_MODULE=fcitx\nQT_IM_MODULE=fcitx\nXMODIFIERS=@im=fcitx" | sudo tee -a /etc/environment
 
-# Install shell and change zsh as default
+# Install shell
 sudo pacman -S --noconfirm zsh 
-zsh
-chsh -s /bin/zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-mkdir -p source
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/source/powerlevel10k
-echo 'source ~/source/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 
 # Install gnome stuffs
 sudo pacman -S --noconfirm gnome-shell-extensions gnome-browser-connector gnome-tweaks touchegg dconf-editor font-manager gitg gparted gnome-logs gnome-terminal
@@ -31,7 +25,8 @@ sudo pacman -S --noconfirm cmake electron25 gcc-fortran gdal python-pipx python-
 
 # Install development tools
 sudo pacman -S --noconfirm r
-yay -S --noconfirm rstudio-desktop-bin
+# rstudio currently acting weird
+# yay -S --noconfirm rstudio-desktop-bin
 yay -S --noconfirm visual-studio-code-bin
 sudo pacman -S --noconfirm docker
 sudo systemctl enable docker.service
@@ -115,6 +110,7 @@ mkdir -p ~/.icons
 wget -qO- https://git.io/papirus-icon-theme-install | DESTDIR="$HOME/.icons" sh
 
 # install theme
+mkdir -p ~/source
 git clone https://github.com/imarkoff/Marble-shell-theme.git ~/source/Marble-shell-theme
 cd ~/source/Marble-shell-theme
 python install.py -a
@@ -148,3 +144,6 @@ gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-typ
 
 # set keybindings
 ./set-keybindings.sh
+
+# configure zsh
+./zsh-config.sh
