@@ -83,10 +83,6 @@ pipx install twine
 pipx install trash-cli
 pipx install gnome-extensions-cli
 
-# add line to zsh config
-echo 'eval $(thefuck --alias)' >> ~/.zshrc
-echo 'eval "$(zoxide init zsh)"' >> ~/.zshrc
-
 # install gnome extensions
 gnome-extensions-cli install Vitals@CoreCoding.com 
 gnome-extensions-cli install user-theme@gnome-shell-extensions.gcampax.github.com
