@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Exit on error
+set -e
+
 if [ "$#" -ne 2 ]; then
     echo "Usage: $0 <UUID> <NAME>"
     exit 1

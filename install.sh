@@ -122,11 +122,20 @@ gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts-only-mounted '
 gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'FIXED'
 gsettings set org.gnome.shell.extensions.dash-to-dock background-color '#ffffff'
 gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.6
+gsettings set org.gnome.shell.extensions.user-theme name 'Marble-gray-dark'
 gsettings set org.gnome.desktop.interface show-battery-percentage 'true'
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
 gsettings set org.gnome.desktop.interface font-name 'Cantarell 12'
 gsettings set org.gnome.desktop.interface document-font-name 'Cantarell 12'
 gsettings set org.gnome.desktop.interface monospace-font-name 'Source Code Pro 11'
-gsettings set org.gnome.shell.extensions.user-theme name 'Marble-gray-dark'
+gsettings set org.gnome.settings-daemon.plugins.power idle-dim 'false'
+gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'suspend'
+gsettings set org.gnome.settings-daemon.plugins.power power-saver-profile-on-low-battery 'true'
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 900
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 1800
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'suspend'
 
+# set keybindings
+./set-keybindings.sh
