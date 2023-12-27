@@ -99,7 +99,8 @@ gnome-extensions-cli install waylandorx11@injcristianrojas.github.com
 
 # add necessary gsettings schema
 ./enable-gsettings-schemas.sh dash-to-dock@micxgx.gmail.com dash-to-dock
-./enable-gsettings-schemas.sh user-theme@gnome-shell-extensions.gcampax.github.com
+./enable-gsettings-schemas.sh user-theme@gnome-shell-extensions.gcampax.github.com user-theme
+./enable-gsettings-schemas.sh AlphabeticalAppGrid@stuarthayhurst alphabetical-app-grid
 
 # install icons
 mkdir -p ~/.icons
@@ -124,6 +125,8 @@ gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'FIXED'
 gsettings set org.gnome.shell.extensions.dash-to-dock background-color '#ffffff'
 gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.6
 gsettings set org.gnome.shell.extensions.user-theme name 'Marble-gray-dark'
+gsettings set org.gnome.shell.extensions.alphabetical-app-grid folder-order-position 'start'
+gsettings set org.gnome.shell.extensions.alphabetical-app-grid sort-folder-contents true
 gsettings set org.gnome.desktop.interface show-battery-percentage 'true'
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
