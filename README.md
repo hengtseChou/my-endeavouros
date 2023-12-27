@@ -28,7 +28,8 @@ GNOME
 
 ## Boot
 
-systemd-boot
+~~systemd-boot~~ have some issue with timeshift ([link](https://forum.endeavouros.com/t/solved-failed-to-mount-efi-due-to-timeshift-restore/44154)), switch to grub in the future
+
 
 # Software
 
@@ -141,6 +142,7 @@ systemd-boot
 - xcolor
 - zoxide
 - lsd
+- stow
 
 ## others
 
@@ -160,12 +162,12 @@ systemd-boot
 - dash-to-dock@micxgx.gmail.com
 - blur-my-shell@aunetx
 - Vitals@CoreCoding.com
-- just-perfection-desktop@just-perfection
 - AlphabeticalAppGrid@stuarthayhurst
 - x11gestures@joseexposito.github.io
 - notification-timeout@chlumskyvaclav.gmail.com
 - drive-menu@gnome-shell-extensions.gcampax.github.com
 - arch-update@RaphaelRochet
+- gnome-ui-tune@itstime.tech
 
 # Tweak settings
 
