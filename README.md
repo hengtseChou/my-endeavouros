@@ -143,6 +143,7 @@ GNOME
 - zoxide
 - lsd
 - stow
+- rclone
 
 ## others
 

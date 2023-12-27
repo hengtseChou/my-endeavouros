@@ -75,7 +75,7 @@ yay -S --noconfirm bauh
 sudo pacman -S --noconfirm bleachbit
 
 # Install cli app
-sudo pacman -S --noconfirm prettier github-cli speedtest-cli xcolor zoxide lsd stow
+sudo pacman -S --noconfirm prettier github-cli speedtest-cli xcolor zoxide lsd stow rclone
 yay -S --noconfirm fast thefuck
 
 # Install other stuffs
@@ -109,6 +109,15 @@ gnome-extensions-cli install waylandorx11@injcristianrojas.github.com
 # add necessary gsettings schema
 ./enable-gsettings-schemas.sh dash-to-dock@micxgx.gmail.com dash-to-dock
 ./enable-gsettings-schemas.sh user-theme@gnome-shell-extensions.gcampax.github.com
+
+# install icons
+mkdir -p ~/.icons
+wget -qO- https://git.io/papirus-icon-theme-install | DESTDIR="$HOME/.icons" sh
+
+# install theme
+git clone https://github.com/imarkoff/Marble-shell-theme.git ~/source/Marble-shell-theme
+cd ~/source/Marble-shell-theme
+python install.py -a
 
 # tweak settings
 gsettings set org.gnome.desktop.wm.preferences focus-new-windows 'smart'
