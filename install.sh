@@ -4,77 +4,75 @@
 set -e
 
 # Update mirror list
-sudo pacman -S --noconfirm reflector
+sudo pacman -S --noconfirm --needed reflector
 sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 
 # Update system
 sudo pacman -Syu --noconfirm
 
 # Install input method 
-sudo pacman -S --noconfirm fcitx5-im fcitx5-chewing
+sudo pacman -S --noconfirm --needed fcitx5-im fcitx5-chewing
 echo -e "GTK_IM_MODULE=fcitx\nQT_IM_MODULE=fcitx\nXMODIFIERS=@im=fcitx" | sudo tee -a /etc/environment
 
 # Install shell
-sudo pacman -S --noconfirm zsh 
+sudo pacman -S --noconfirm --needed zsh 
 
 # Install gnome stuffs
-sudo pacman -S --noconfirm gnome-shell-extensions gnome-browser-connector gnome-tweaks touchegg dconf-editor font-manager gitg gparted gnome-logs gnome-terminal
+sudo pacman -S --noconfirm --needed gnome-shell-extensions gnome-browser-connector gnome-tweaks touchegg dconf-editor font-manager gitg gparted gnome-logs gnome-terminal
+yay -S --noconfirm decoder impression
 
 # Install build system & utilities
-sudo pacman -S --noconfirm cmake electron25 gcc-fortran gdal python-pipx python-build python-setuptools
+sudo pacman -S --noconfirm --needed cmake electron25 gcc-fortran gdal python-pipx python-build python-setuptools
 
 # Install development tools
-sudo pacman -S --noconfirm r
+sudo pacman -S --noconfirm --needed r
 # rstudio currently acting weird
 # yay -S --noconfirm rstudio-desktop-bin
 yay -S --noconfirm visual-studio-code-bin
-sudo pacman -S --noconfirm docker
+sudo pacman -S --noconfirm --needed docker
 sudo systemctl enable docker.service
 sudo usermod -aG docker $USER # to run docker without sudo
 
 # Install system info tools
-sudo pacman -S --noconfirm htop btop neofetch baobab ncdu
-yay -S --noconfirm hardinfo
-yay -S --noconfirm cpu-x
+sudo pacman -S --noconfirm --needed htop btop neofetch baobab ncdu
+yay -S --noconfirm hardinfo cpu-x
 
 # Install graphic card manager
 # This part is comment out since I no longer want to deal with nvidia anymore
-# sudo pacman -S --noconfirm optimus-manager optimus-manager-qt
+# sudo pacman -S --noconfirm --needed optimus-manager optimus-manager-qt
 # yay -S --noconfirm gdm-prime
 
 # Install backup tool
-sudo pacman -S --noconfirm timeshift
+sudo pacman -S --noconfirm --needed timeshift
 
 # Install password manager
-sudo pacman -S --noconfirm bitwarden
+sudo pacman -S --noconfirm --needed bitwarden
 
 # Install office-suite
-sudo pacman -S --noconfirm libreoffice-fresh
+sudo pacman -S --noconfirm --needed libreoffice-fresh
 
 # Install app launcher & appimage launcher
-sudo pacman -S --noconfirm rofi
+sudo pacman -S --noconfirm --needed rofi
 yay -S --noconfirm appimagelauncher
 
 # Install browser (I need some extension from chromium)
-sudo pacman -S --noconfirm chromium
+sudo pacman -S --noconfirm --needed chromium
 
 # Install music streaming
-yay -S --noconfirm ncspot
-yay -S --noconfirm monophony
+yay -S --noconfirm ncspot monophony
 
 # Install GUI for package manager
-yay -S --noconfirm octopi
-yay -S --noconfirm bauh
+yay -S --noconfirm octopi bauh
 
 # Install disk space cleaner
-sudo pacman -S --noconfirm bleachbit
+sudo pacman -S --noconfirm --needed bleachbit
 
 # Install cli app
-sudo pacman -S --noconfirm prettier github-cli speedtest-cli xcolor zoxide lsd stow rclone
+sudo pacman -S --noconfirm --needed prettier github-cli speedtest-cli xcolor zoxide lsd stow rclone
 yay -S --noconfirm fast thefuck
 
 # Install other stuffs
-sudo pacman -S --noconfirm marker vlc
+sudo pacman -S --noconfirm --needed marker vlc
 yay -S --noconfirm angrysearch zotero
 
 # pipx install 
@@ -82,6 +80,16 @@ pipx install poetry
 pipx install twine
 pipx install trash-cli
 pipx install gnome-extensions-cli
+
+# install icons
+mkdir -p ~/.icons
+wget -qO- https://git.io/papirus-icon-theme-install | DESTDIR="$HOME/.icons" sh
+
+# install theme
+mkdir -p ~/source
+git clone https://github.com/imarkoff/Marble-shell-theme.git ~/source/Marble-shell-theme
+cd ~/source/Marble-shell-theme
+python install.py -a
 
 # install gnome extensions
 gnome-extensions-cli install Vitals@CoreCoding.com 
@@ -101,16 +109,6 @@ gnome-extensions-cli install waylandorx11@injcristianrojas.github.com
 ./enable-gsettings-schemas.sh dash-to-dock@micxgx.gmail.com dash-to-dock
 ./enable-gsettings-schemas.sh user-theme@gnome-shell-extensions.gcampax.github.com user-theme
 ./enable-gsettings-schemas.sh AlphabeticalAppGrid@stuarthayhurst alphabetical-app-grid
-
-# install icons
-mkdir -p ~/.icons
-wget -qO- https://git.io/papirus-icon-theme-install | DESTDIR="$HOME/.icons" sh
-
-# install theme
-mkdir -p ~/source
-git clone https://github.com/imarkoff/Marble-shell-theme.git ~/source/Marble-shell-theme
-cd ~/source/Marble-shell-theme
-python install.py -a
 
 # tweak settings
 gsettings set org.gnome.desktop.wm.preferences focus-new-windows 'smart'
