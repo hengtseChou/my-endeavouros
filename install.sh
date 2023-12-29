@@ -114,6 +114,7 @@ python install.py -a
 
 # tweak settings
 gsettings set org.gnome.desktop.wm.preferences focus-new-windows 'smart'
+gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
 gsettings set org.gmone.mutter center-new-windows 'true'
 gsettings set org.gnome.shell.extensions.dash-to-dock disable-overview-on-startup 'true' 
 gsettings set org.gnome.shell.extensions.dash-to-dock animate-show-apps 'true' 
