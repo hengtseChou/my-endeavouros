@@ -4,7 +4,7 @@
 set -e
 # Update mirror list
 sudo pacman -S --noconfirm --needed reflector
-sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+sudo reflector --country Taiwan --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 
 # Update system
 sudo pacman -Syu --noconfirm
@@ -15,18 +15,19 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 eval set -- "$options"
-use_snapper="false"
+use_timeshift="false"
 
 # Process options: install optimus manager/timeshift
 while true; do
   case "$1" in
     --add-optimus)
+      sudo pacman -R --noconfirm gdm
       yay -S --noconfirm --needed optimus-manager optimus-manager-qt gdm-prime
       shift
       ;;
-    --add-snapper)
-      sudo pacman -S --noconfirm --needed snapper-support
-      use_snapper="true"
+    --add-timeshift)
+      sudo pacman -S --noconfirm --needed timeshift
+      use_tmeshift="true"
       shift
       ;;
     --)
@@ -41,21 +42,24 @@ while true; do
 done
 
 # Install timeshift if not using snapper
-if [ "$using_snapper" = "false" ]; then
-  sudo pacman -S --needed timeshift
+if [ "$using_timeshift" = "false" ]; then
+  yay -S --noconfirm snapper-support
 fi
-
 
 # Install input method 
 sudo pacman -S --noconfirm --needed fcitx5-im fcitx5-chewing
-echo -e "GTK_IM_MODULE=fcitx\nQT_IM_MODULE=fcitx\nXMODIFIERS=@im=fcitx" | sudo tee -a /etc/environment
+env_file="/etc/environment"
+im_config="GTK_IM_MODULE=fcitx\nQT_IM_MODULE=fcitx\nXMODIFIERS=@im=fcitx"
+if ! grep -qF "$im_config" "$env_file"; then
+  echo -e "$im_config" | sudo tee -a "$env_file" > /dev/null
+fi
 
 # Install shell
 sudo pacman -S --noconfirm --needed zsh 
 
 # Install gnome stuffs
 sudo pacman -S --noconfirm --needed gnome-shell-extensions gnome-browser-connector gnome-tweaks touchegg dconf-editor font-manager gitg gparted gnome-logs gnome-terminal
-yay -S --noconfirm --needed  decoder impression
+yay -S --noconfirm --needed decoder impression
 
 # Install build system & utilities
 sudo pacman -S --noconfirm --needed cmake electron25 gcc-fortran gdal python-pipx python-build python-setuptools
@@ -63,8 +67,8 @@ sudo pacman -S --noconfirm --needed cmake electron25 gcc-fortran gdal python-pip
 # Install development tools
 sudo pacman -S --noconfirm --needed r
 # rstudio currently acting weird
-# yay -S --noconfirm rstudio-desktop-bin
-# yay -S --noconfirm visual-studio-code-bin
+# yay -S --noconfirm --needed rstudio-desktop-bin
+# yay -S --noconfirm --needed visual-studio-code-bin
 sudo pacman -S --noconfirm --needed docker
 sudo systemctl enable docker.service
 sudo usermod -aG docker $USER # to run docker without sudo
@@ -72,14 +76,6 @@ sudo usermod -aG docker $USER # to run docker without sudo
 # Install system info tools
 sudo pacman -S --noconfirm --needed htop btop neofetch baobab ncdu
 yay -S --noconfirm --needed hardinfo cpu-x
-
-# Install graphic card manager
-# This part is comment out since I no longer want to deal with nvidia anymore
-# sudo pacman -S --noconfirm --needed optimus-manager optimus-manager-qt
-# yay -S --noconfirm gdm-prime
-
-# Install backup tool
-sudo pacman -S --noconfirm --needed timeshift
 
 # Install password manager
 sudo pacman -S --noconfirm --needed bitwarden
