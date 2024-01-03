@@ -24,8 +24,7 @@ yay -S --noconfirm --needed snapper-support
 while true; do
   case "$1" in
     --add-optimus)
-      sudo pacman -S --noconfirm --needed optimus-manager optimus-manager-qt
-      yay -S --noconfirm --needed gdm-prime
+      yay -S --noconfirm --needed optimus-manager optimus-manager-qt gdm-prime
       shift
       ;;
     --add-timeshift)
