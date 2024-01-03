@@ -8,7 +8,7 @@ options=$(getopt -o '' --long add-optimus,add-timeshift -n "$0" -- "$@")
 if [ $? -ne 0 ]; then
   exit 1
 fi
-eval set -- "$options
+eval set -- "$options"
 
 # Update mirror list
 sudo pacman -S --noconfirm --needed reflector
@@ -18,7 +18,7 @@ sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 sudo pacman -Syu --noconfirm
 
 # Install snapper support
-yay -S snapper-support
+yay -S --noconfirm snapper-support
 
 # Process options: install optimus manager/timeshift
 while true; do
