@@ -2,14 +2,6 @@
 
 # Exit on error
 set -e
-
-# Parse command-line options
-options=$(getopt -o '' --long add-optimus,add-timeshift -n "$0" -- "$@")
-if [ $? -ne 0 ]; then
-  exit 1
-fi
-eval set -- "$options"
-
 # Update mirror list
 sudo pacman -S --noconfirm --needed reflector
 sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
@@ -17,8 +9,13 @@ sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 # Update system
 sudo pacman -Syu --noconfirm
 
-# Install snapper support
-yay -S --noconfirm --needed snapper-support
+# Parse command-line options
+options=$(getopt -o '' --long add-optimus,add-timeshift -n "$0" -- "$@")
+if [ $? -ne 0 ]; then
+  exit 1
+fi
+eval set -- "$options"
+use_snapper="false"
 
 # Process options: install optimus manager/timeshift
 while true; do
@@ -27,8 +24,9 @@ while true; do
       yay -S --noconfirm --needed optimus-manager optimus-manager-qt gdm-prime
       shift
       ;;
-    --add-timeshift)
-      sudo pacman -S --noconfirm --needed timeshift
+    --add-snapper)
+      sudo pacman -S --noconfirm --needed snapper-support
+      use_snapper="true"
       shift
       ;;
     --)
@@ -41,6 +39,12 @@ while true; do
       ;;
   esac
 done
+
+# Install timeshift if not using snapper
+if [ "$using_snapper" = "false" ]; then
+  sudo pacman -S --needed timeshift
+fi
+
 
 # Install input method 
 sudo pacman -S --noconfirm --needed fcitx5-im fcitx5-chewing
