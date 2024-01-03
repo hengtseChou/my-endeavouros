@@ -18,4 +18,4 @@ cp "$SCHEMA_FILE" "$SCHEMA_DEST"
 cd "$SCHEMA_DEST"
 glib-compile-schemas .
 cd "$HOME"
-echo "add schema org.gnome.shell.extensions.$NAME"
+echo "add schema for $NAME"

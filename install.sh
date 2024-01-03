@@ -4,7 +4,7 @@
 set -e
 # Update mirror list
 sudo pacman -S --noconfirm --needed reflector
-sudo reflector --country Taiwan --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+sudo reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 
 # Update system
 sudo pacman -Syu --noconfirm
@@ -23,6 +23,9 @@ while true; do
     --add-optimus)
       sudo pacman -R --noconfirm gdm
       yay -S --noconfirm --needed optimus-manager optimus-manager-qt gdm-prime
+      sudo sed -i 's/^#WaylandEnable=false/WaylandEnable=false/' /etc/gdm/custom.conf
+      sudo systemctl enable optimus-manager.service
+      sudo systemctl start optimus-manager
       shift
       ;;
     --add-timeshift)
@@ -59,6 +62,8 @@ sudo pacman -S --noconfirm --needed zsh
 
 # Install gnome stuffs
 sudo pacman -S --noconfirm --needed gnome-shell-extensions gnome-browser-connector gnome-tweaks touchegg dconf-editor font-manager gitg gparted gnome-logs gnome-terminal
+sudo systemctl enable touchegg.service
+sudo systemctl start touchegg
 yay -S --noconfirm --needed decoder impression
 
 # Install build system & utilities
@@ -83,8 +88,14 @@ sudo pacman -S --noconfirm --needed bitwarden
 # Install office-suite
 sudo pacman -S --noconfirm --needed libreoffice-fresh
 
-# Install app launcher & appimage launcher
+# Install app launcher and download themes
 sudo pacman -S --noconfirm --needed rofi
+git clone https://github.com/lr-tech/rofi-themes-collection.git
+mkdir -p ~/.local/share/rofi/themes/
+cp -a ~/rofi-themes-collection/themes/. ~/.local/share/rofi/themes/
+rm -rf ~/rofi-themes-collection
+
+# Install appimage launcher
 yay -S --noconfirm --needed appimagelauncher
 
 # Install browser (I need some extension from chromium)
@@ -100,7 +111,7 @@ yay -S --noconfirm --needed octopi bauh
 sudo pacman -S --noconfirm --needed bleachbit
 
 # Install cli app
-sudo pacman -S --noconfirm --needed prettier github-cli speedtest-cli xcolor zoxide lsd stow rclone
+sudo pacman -S --noconfirm --needed prettier github-cli speedtest-cli xcolor zoxide lsd rclone stow
 yay -S --noconfirm --needed fast
 
 # Install other stuffs
@@ -109,20 +120,11 @@ yay -S --noconfirm --needed angrysearch zotero
 
 # pipx install 
 pipx ensurepath
+source ~/.profile
 pipx install poetry
 pipx install twine
 pipx install trash-cli
 pipx install gnome-extensions-cli
-
-# install icons
-mkdir -p ~/.icons
-wget -qO- https://git.io/papirus-icon-theme-install | DESTDIR="$HOME/.icons" sh
-
-# install theme
-mkdir -p ~/source
-git clone https://github.com/imarkoff/Marble-shell-theme.git ~/source/Marble-shell-theme
-cd ~/source/Marble-shell-theme
-python install.py -a
 
 # install gnome extensions
 gnome-extensions-cli install Vitals@CoreCoding.com 
@@ -141,9 +143,21 @@ gnome-extensions-cli install waylandorx11@injcristianrojas.github.com
 # add necessary gsettings schema
 ./enable-gsettings-schemas.sh dash-to-dock@micxgx.gmail.com dash-to-dock
 ./enable-gsettings-schemas.sh user-theme@gnome-shell-extensions.gcampax.github.com user-theme
-./enable-gsettings-schemas.sh AlphabeticalAppGrid@stuarthayhurst alphabetical-app-grid
+./enable-gsettings-schemas.sh AlphabeticalAppGrid@stuarthayhurst AlphabeticalAppGrid
+
+# install icons
+mkdir -p ~/.icons
+wget -qO- https://git.io/papirus-icon-theme-install | DESTDIR="$HOME/.icons" sh
+
+# install theme
+mkdir -p ~/source
+git clone https://github.com/imarkoff/Marble-shell-theme.git ~/source/Marble-shell-theme
+cd ~/source/Marble-shell-theme
+python install.py -a
+# rm -rf ~/source/Marble-shell-theme
 
 # tweak settings
+sudo systemctl enable bluetooth
 gsettings set org.gnome.desktop.wm.preferences focus-new-windows 'smart'
 gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
 gsettings set org.gmone.mutter center-new-windows 'true'
@@ -179,5 +193,5 @@ gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-typ
 # configure zsh
 ./zsh-config.sh
 
-# enable bluetooth
-sudo systemctl enable bluetooth
+# stow config
+./apply-stow.sh
