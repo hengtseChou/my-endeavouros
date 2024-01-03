@@ -18,14 +18,14 @@ sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 sudo pacman -Syu --noconfirm
 
 # Install snapper support
-yay -S --noconfirm snapper-support
+yay -S --noconfirm --needed snapper-support
 
 # Process options: install optimus manager/timeshift
 while true; do
   case "$1" in
     --add-optimus)
       sudo pacman -S --noconfirm --needed optimus-manager optimus-manager-qt
-      yay -S --noconfirm gdm-prime
+      yay -S --noconfirm --needed gdm-prime
       shift
       ;;
     --add-timeshift)
@@ -52,7 +52,7 @@ sudo pacman -S --noconfirm --needed zsh
 
 # Install gnome stuffs
 sudo pacman -S --noconfirm --needed gnome-shell-extensions gnome-browser-connector gnome-tweaks touchegg dconf-editor font-manager gitg gparted gnome-logs gnome-terminal
-yay -S --noconfirm decoder impression
+yay -S --noconfirm --needed  decoder impression
 
 # Install build system & utilities
 sudo pacman -S --noconfirm --needed cmake electron25 gcc-fortran gdal python-pipx python-build python-setuptools
@@ -61,14 +61,14 @@ sudo pacman -S --noconfirm --needed cmake electron25 gcc-fortran gdal python-pip
 sudo pacman -S --noconfirm --needed r
 # rstudio currently acting weird
 # yay -S --noconfirm rstudio-desktop-bin
-yay -S --noconfirm visual-studio-code-bin
+# yay -S --noconfirm visual-studio-code-bin
 sudo pacman -S --noconfirm --needed docker
 sudo systemctl enable docker.service
 sudo usermod -aG docker $USER # to run docker without sudo
 
 # Install system info tools
 sudo pacman -S --noconfirm --needed htop btop neofetch baobab ncdu
-yay -S --noconfirm hardinfo cpu-x
+yay -S --noconfirm --needed hardinfo cpu-x
 
 # Install graphic card manager
 # This part is comment out since I no longer want to deal with nvidia anymore
@@ -86,27 +86,27 @@ sudo pacman -S --noconfirm --needed libreoffice-fresh
 
 # Install app launcher & appimage launcher
 sudo pacman -S --noconfirm --needed rofi
-yay -S --noconfirm appimagelauncher
+yay -S --noconfirm --needed appimagelauncher
 
 # Install browser (I need some extension from chromium)
 sudo pacman -S --noconfirm --needed chromium
 
 # Install music streaming
-yay -S --noconfirm ncspot monophony
+yay -S --noconfirm --needed ncspot monophony
 
 # Install GUI for package manager
-yay -S --noconfirm octopi bauh
+yay -S --noconfirm --needed octopi bauh
 
 # Install disk space cleaner
 sudo pacman -S --noconfirm --needed bleachbit
 
 # Install cli app
 sudo pacman -S --noconfirm --needed prettier github-cli speedtest-cli xcolor zoxide lsd stow rclone
-yay -S --noconfirm fast thefuck
+yay -S --noconfirm --needed fast
 
 # Install other stuffs
 sudo pacman -S --noconfirm --needed marker vlc
-yay -S --noconfirm angrysearch zotero
+yay -S --noconfirm --needed angrysearch zotero
 
 # pipx install 
 pipx install poetry
