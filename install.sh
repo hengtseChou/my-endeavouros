@@ -3,12 +3,41 @@
 # Exit on error
 set -e
 
+# Parse command-line options
+options=$(getopt -o '' --long add-optimus,add-timeshift -n "$0" -- "$@")
+if [ $? -ne 0 ]; then
+  exit 1
+fi
+eval set -- "$options
+
 # Update mirror list
 sudo pacman -S --noconfirm --needed reflector
 sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 
 # Update system
 sudo pacman -Syu --noconfirm
+
+# Process options: install optimus manager/timeshift
+while true; do
+  case "$1" in
+    --add-optimus)
+      sudo pacman -S --noconfirm --needed optimus-manager optimus-manager-qt
+      yay -S --noconfirm gdm-prime
+      shift
+      ;;
+    --add-timeshift)
+      sudo pacman -S --noconfirm --needed timeshift
+      shift
+      ;;
+    --)
+      shift
+      break
+      ;;
+    *)
+      exit 1
+      ;;
+  esac
+done
 
 # Install input method 
 sudo pacman -S --noconfirm --needed fcitx5-im fcitx5-chewing
