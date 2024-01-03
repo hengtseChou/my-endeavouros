@@ -108,6 +108,7 @@ sudo pacman -S --noconfirm --needed marker vlc
 yay -S --noconfirm --needed angrysearch zotero
 
 # pipx install 
+pipx ensurepath
 pipx install poetry
 pipx install twine
 pipx install trash-cli
