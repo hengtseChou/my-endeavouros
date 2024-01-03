@@ -17,6 +17,9 @@ sudo reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 # Update system
 sudo pacman -Syu --noconfirm
 
+# Install snapper support
+yay -S snapper-support
+
 # Process options: install optimus manager/timeshift
 while true; do
   case "$1" in
@@ -34,7 +37,8 @@ while true; do
       break
       ;;
     *)
-      exit 1
+      echo "Unrecognized option: $1"
+      shift
       ;;
   esac
 done
