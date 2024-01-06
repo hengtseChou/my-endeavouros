@@ -4,7 +4,7 @@
 set -e
 # Update mirror list
 sudo pacman -S --noconfirm --needed reflector
-sudo reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+sudo reflector --verbose -c TW --protocol https --sort rate --latest 20 --download-timeout 5 --threads 5 --save /etc/pacman.d/mirrorlist
 
 # Update system
 sudo pacman -Syu --noconfirm
@@ -61,7 +61,7 @@ fi
 sudo pacman -S --noconfirm --needed zsh 
 
 # Install gnome stuffs
-sudo pacman -S --noconfirm --needed gnome-shell-extensions gnome-browser-connector gnome-tweaks touchegg dconf-editor font-manager gitg gparted gnome-logs gnome-terminal
+sudo pacman -S --noconfirm --needed gnome-shell-extensions gnome-browser-connector gnome-tweaks touchegg dconf-editor font-manager gitg gparted gnome-logs gnome-terminal nemo
 sudo systemctl enable touchegg.service
 sudo systemctl start touchegg
 yay -S --noconfirm --needed decoder impression
@@ -73,13 +73,13 @@ sudo pacman -S --noconfirm --needed cmake electron25 gcc-fortran gdal python-pip
 sudo pacman -S --noconfirm --needed r
 # rstudio currently acting weird
 # yay -S --noconfirm --needed rstudio-desktop-bin
-# yay -S --noconfirm --needed visual-studio-code-bin
+yay -S --noconfirm --needed visual-studio-code-bin
 sudo pacman -S --noconfirm --needed docker
 sudo systemctl enable docker.service
 sudo usermod -aG docker $USER # to run docker without sudo
 
 # Install system info tools
-sudo pacman -S --noconfirm --needed htop btop neofetch baobab ncdu
+sudo pacman -S --noconfirm --needed htop btop neofetch baobab ncdu fastfetch
 yay -S --noconfirm --needed hardinfo cpu-x
 
 # Install password manager
@@ -90,13 +90,10 @@ sudo pacman -S --noconfirm --needed libreoffice-fresh
 
 # Install app launcher and download themes
 sudo pacman -S --noconfirm --needed rofi
-git clone https://github.com/lr-tech/rofi-themes-collection.git
+git clone https://github.com/lr-tech/rofi-themes-collection.git ~/
 mkdir -p ~/.local/share/rofi/themes/
 cp -a ~/rofi-themes-collection/themes/. ~/.local/share/rofi/themes/
 rm -rf ~/rofi-themes-collection
-
-# Install appimage launcher
-yay -S --noconfirm --needed appimagelauncher
 
 # Install browser (I need some extension from chromium)
 sudo pacman -S --noconfirm --needed chromium
@@ -110,6 +107,9 @@ yay -S --noconfirm --needed octopi bauh
 # Install disk space cleaner
 sudo pacman -S --noconfirm --needed bleachbit
 
+# Install balena etcher
+yay -S --needed --noconfirm etcher-bin
+
 # Install cli app
 sudo pacman -S --noconfirm --needed prettier github-cli speedtest-cli xcolor zoxide lsd rclone stow
 yay -S --noconfirm --needed fast
@@ -120,7 +120,7 @@ yay -S --noconfirm --needed angrysearch zotero
 
 # pipx install 
 pipx ensurepath
-source ~/.profile
+source ~/.bashrc
 pipx install poetry
 pipx install twine
 pipx install trash-cli
@@ -154,13 +154,13 @@ mkdir -p ~/source
 git clone https://github.com/imarkoff/Marble-shell-theme.git ~/source/Marble-shell-theme
 cd ~/source/Marble-shell-theme
 python install.py -a
-# rm -rf ~/source/Marble-shell-theme
+rm -rf ~/source/Marble-shell-theme
 
 # tweak settings
 sudo systemctl enable bluetooth
 gsettings set org.gnome.desktop.wm.preferences focus-new-windows 'smart'
 gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
-gsettings set org.gmone.mutter center-new-windows 'true'
+gsettings set org.gnome.mutter center-new-windows 'true'
 gsettings set org.gnome.shell.extensions.dash-to-dock disable-overview-on-startup 'true' 
 gsettings set org.gnome.shell.extensions.dash-to-dock animate-show-apps 'true' 
 gsettings set org.gnome.shell.extensions.dash-to-dock show-trash 'false' 
