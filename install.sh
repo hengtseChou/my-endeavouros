@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Exit on error
 set -e
+set -u
+set -o pipefail
 # Update mirror list
-sudo pacman -S --noconfirm --needed reflector
 sudo reflector --verbose -c TW --protocol https --sort rate --latest 20 --download-timeout 5 --threads 5 --save /etc/pacman.d/mirrorlist
 
 # Update system
@@ -29,7 +29,7 @@ while true; do
       shift
       ;;
     --add-timeshift)
-      sudo pacman -S --noconfirm --needed timeshift
+      sudo pacman -S --noconfirm --needed timeshift grub-btrfs
       use_tmeshift="true"
       shift
       ;;
@@ -60,14 +60,14 @@ fi
 # Install shell
 sudo pacman -S --noconfirm --needed zsh 
 
+# Install terminal
+sudo pacman -S --noconfirm --needed kitty
+
 # Install gnome stuffs
-sudo pacman -S --noconfirm --needed gnome-shell-extensions gnome-browser-connector gnome-tweaks touchegg dconf-editor font-manager gitg gparted gnome-logs gnome-terminal nemo
-sudo systemctl enable touchegg.service
-sudo systemctl start touchegg
-yay -S --noconfirm --needed decoder impression
+sudo pacman -S --noconfirm --needed gnome-shell-extensions gnome-browser-connector font-manager gparted gnome-logs
 
 # Install build system & utilities
-sudo pacman -S --noconfirm --needed cmake electron25 gcc-fortran gdal python-pipx python-build python-setuptools
+sudo pacman -S --noconfirm --needed cmake gcc-fortran gdal tk python-pipx python-build python-setuptools
 
 # Install development tools
 sudo pacman -S --noconfirm --needed r
@@ -94,6 +94,7 @@ git clone https://github.com/lr-tech/rofi-themes-collection.git ~/
 mkdir -p ~/.local/share/rofi/themes/
 cp -a ~/rofi-themes-collection/themes/. ~/.local/share/rofi/themes/
 rm -rf ~/rofi-themes-collection
+sudo pacman -S --noconfirm --needed wofi
 
 # Install browser (I need some extension from chromium)
 sudo pacman -S --noconfirm --needed chromium
@@ -122,6 +123,7 @@ yay -S --noconfirm --needed angrysearch zotero
 pipx ensurepath
 source ~/.bashrc
 pipx install poetry
+poetry config virtualenvs.in-project true
 pipx install twine
 pipx install trash-cli
 pipx install gnome-extensions-cli
