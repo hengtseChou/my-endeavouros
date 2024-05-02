@@ -1,0 +1,20 @@
+packagesPacman=(
+    "cliphist"
+    "dunst"
+    "grim"
+    "gum"
+    "hypridle"
+    "hyprland"
+    "hyprlock"
+    "python-pywal"
+    "rofi-wayland"
+    "slurp"
+    "swappy"
+    "waybar"
+    "xdg-desktop-portal-hyprland"
+);
+
+packagesYay=(
+    "swww"
+    "wlogout"
+);

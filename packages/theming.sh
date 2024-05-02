@@ -1,0 +1,28 @@
+packagesPacman=(
+    "adobe-source-code-pro-fonts"
+    "adobe-source-han-sans-tw-fonts"
+    "adobe-source-han-serif-tw-fonts"
+    "noto-fonts"
+    "noto-fonts-cjk"
+    "noto-fonts-emoji"
+    "noto-fonts-extra"
+    "otf-font-awesome" 
+    "ttf-fira-sans" 
+    "ttf-fira-code" 
+    "ttf-firacode-nerd"
+    "ttf-meslo-nerd"
+    "ttf-noto-nerd"
+    "ttf-ubuntu-font-family"
+    "ttf-ubuntu-nerd"
+    "papirus-icon-theme"
+    "breeze-icons"
+);
+
+packagesYay=(
+    "marble-shell-theme"
+    "yaru-gnome-shell-theme"
+    "yaru-gtk-theme"
+    "yaru-gtksourceview-theme"
+    "yaru-icon-theme"
+    "yaru-sound=theme"
+);
