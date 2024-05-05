@@ -35,6 +35,7 @@ packagesPacman=(
 )
 
 packagesYay=(
+    "btrfs-assistant"
     "cpu-x"
     "etcher-bin"
     "fast"
