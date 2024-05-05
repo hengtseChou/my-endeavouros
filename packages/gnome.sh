@@ -1,22 +1,11 @@
 packagesPacman=(
     "baobab"
-    "evince"
-    "file-roller"
     "font-manager"
     "gnome-browser-connector"
-    "gnome-control-center"
-    "gnome-disk-utility"
     "gnome-logs"
-    "gnome-nettools"
     "gnome-shell-extensions"
-    "gnome-system-monitor"
-    "gnome-text-editor"
-    "gnome-usage"
-    "gtk4"
-    "loupe"
-    "nautilus"
     "polkit-gnome"
-    "xdg-desktop-portal-gnome"
+    "sushi"
 );
 
 packagesYay=(
