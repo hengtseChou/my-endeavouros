@@ -149,3 +149,18 @@ gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folder
     'welcome.desktop', \
     'xdvi.desktop', \
     'yad-settings.desktop']"
+
+# gdm 
+gsettings set io.github.realmazharhussain.GdmSettings.appearance cursor-theme 'Adwaita'
+gsettings set io.github.realmazharhussain.GdmSettings.appearance shell-theme 'Yaru-blue-dark'
+gsettings set io.github.realmazharhussain.GdmSettings.appearance icon-theme 'Yaru'
+gsettings set io.github.realmazharhussain.GdmSettings.fonts font 'Ubuntu 12'
+gsettings set io.github.realmazharhussain.GdmSettings.misc enable-logo true
+gsettings set io.github.realmazharhussain.GdmSettings.misc logo "$HOME/endeavouros-install-notes/Endeavour-horizontal-white.png"
+gsettings set io.github.realmazharhussain.GdmSettings.touchpad natural-scrolling true
+gsettings set io.github.realmazharhussain.GdmSettings.touchpad tap-to-click true
+gsettings set io.github.realmazharhussain.GdmSettings.touchpad two-finger-scrolling true
+gsettings set io.github.realmazharhussain.GdmSettings.touchpad disable-while-typing true
+gsettings set io.github.realmazharhussain.GdmSettings.sound theme 'Yaru'
+gsettings set io.github.realmazharhussain.GdmSettings.sound event-sounds true
+gsettings set io.github.realmazharhussain.GdmSettings.top-bar show-battery-percentage true
