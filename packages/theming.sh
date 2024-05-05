@@ -6,17 +6,24 @@ packagesPacman=(
     "noto-fonts-cjk"
     "noto-fonts-emoji"
     "noto-fonts-extra"
-    "otf-font-awesome" 
-    "ttf-fira-sans" 
-    "ttf-fira-code" 
+    "otf-font-awesome"
+    "ttf-arphic-ukai"
+    "ttf-arphic-uming"
+    "ttf-fira-sans"
+    "ttf-fira-code"
     "ttf-firacode-nerd"
+    "ttf-jetbrains-mono"
+    "ttf-jetbrains-mone-nerd"
     "ttf-meslo-nerd"
     "ttf-noto-nerd"
     "ttf-ubuntu-font-family"
     "ttf-ubuntu-nerd"
+    "wqy-microhei"
+    "wqy-microhei-lite"
+    "wqy-zenhei"
     "papirus-icon-theme"
     "breeze-icons"
-);
+)
 
 packagesYay=(
     "marble-shell-theme"
@@ -24,5 +31,5 @@ packagesYay=(
     "yaru-gtk-theme"
     "yaru-gtksourceview-theme"
     "yaru-icon-theme"
-    "yaru-sound=theme"
-);
+    "yaru-sound-theme"
+)

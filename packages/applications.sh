@@ -6,7 +6,9 @@ packagesPacman=(
     "chromium"
     "cmatrix"
     "docker"
-    "eza"
+    "fastfetch"
+    "fcitx5-im"
+    "fcitx5-chewing"
     "figlet"
     "gcolor3"
     "github-cli"
@@ -27,18 +29,19 @@ packagesPacman=(
     "ranger"
     "rclone"
     "spotify-launcher"
-    "starship"
     "telegram-desktop"
     "texmaker"
     "vlc"
     "zoxide"
     "zsh"
-);
+)
 
 packagesYay=(
     "cpu-x"
+    "etcher-bin"
     "fast"
     "hardinfo2"
+    "ngrok"
     "octopi"
     "peaclock"
     "pfetch"
@@ -46,4 +49,4 @@ packagesYay=(
     "visual-studio-code-bin"
     "wl-color-picker"
     "zotero"
-);
+)
