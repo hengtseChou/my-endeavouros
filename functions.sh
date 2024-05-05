@@ -1,5 +1,4 @@
 #!/bin/bash
-
 _isInstalledPacman() {
     package="$1";
     check="$(sudo pacman -Qs --color always "${package}" | grep "local" | grep "${package} ")";
@@ -35,9 +34,6 @@ _isFolderEmpty() {
     fi
 }
 
-# ------------------------------------------------------
-# Function Install all package if not installed
-# ------------------------------------------------------
 _installPackagesPacman() {
     toInstall=();
     for pkg; do
@@ -55,21 +51,6 @@ _installPackagesPacman() {
 
     # printf "Package not installed:\n%s\n" "${toInstall[@]}";
     sudo pacman --noconfirm -S "${toInstall[@]}";
-}
-
-_forcePackagesPacman() {
-    toInstall=();
-    for pkg; do
-        toInstall+=("${pkg}");
-    done;
-
-    if [[ "${toInstall[@]}" == "" ]] ; then
-        # echo "All pacman packages are already installed.";
-        return;
-    fi;
-
-    # printf "Package not installed:\n%s\n" "${toInstall[@]}";
-    sudo pacman --noconfirm -S "${toInstall[@]}" --ask 4;
 }
 
 _installPackagesYay() {
@@ -91,138 +72,34 @@ _installPackagesYay() {
     yay --noconfirm -S "${toInstall[@]}";
 }
 
-_forcePackagesYay() {
-    toInstall=();
-    for pkg; do
-        toInstall+=("${pkg}");
-    done;
-
-    if [[ "${toInstall[@]}" == "" ]] ; then
-        # echo "All packages are already installed.";
-        return;
-    fi;
-
-    # printf "AUR packags not installed:\n%s\n" "${toInstall[@]}";
-    yay --noconfirm -S "${toInstall[@]}" --ask 4;
-}
-
-# ------------------------------------------------------
-# Create symbolic links
-# ------------------------------------------------------
 _installSymLink() {
-    name="$1"
-    symlink="$2";
-    linksource="$3";
-    linktarget="$4";
+    symlink="$1";
+    linksource="$2";
+    linktarget="$3";
     
     if [ -L "${symlink}" ]; then
+    # is a symlink
         rm ${symlink}
         ln -s ${linksource} ${linktarget} 
         echo ":: Symlink ${linksource} -> ${linktarget} created."
+    elif [ -d ${symlink} ]; then
+    # is a dir
+        rm -rf ${symlink}/ 
+        ln -s ${linksource} ${linktarget}
+        echo ":: Symlink for directory ${linksource} -> ${linktarget} created."
+    elif [ -f ${symlink} ]; then
+    # is a file
+        rm ${symlink} 
+        ln -s ${linksource} ${linktarget} 
+        echo ":: Symlink to file ${linksource} -> ${linktarget} created."
     else
-        if [ -d ${symlink} ]; then
-            rm -rf ${symlink}/ 
-            ln -s ${linksource} ${linktarget}
-            echo ":: Symlink for directory ${linksource} -> ${linktarget} created."
-        else
-            if [ -f ${symlink} ]; then
-                rm ${symlink} 
-                ln -s ${linksource} ${linktarget} 
-                echo ":: Symlink to file ${linksource} -> ${linktarget} created."
-            else
-                ln -s ${linksource} ${linktarget} 
-                echo ":: New symlink ${linksource} -> ${linktarget} created."
-            fi
-        fi
+        ln -s ${linksource} ${linktarget} 
+        echo ":: New symlink ${linksource} -> ${linktarget} created."
     fi
 }
 
-# ------------------------------------------------------
-# Installation in a KVM Virtual Machine
-# ------------------------------------------------------
-_isKVM() {
-    iskvm=$(sudo dmesg | grep "Hypervisor detected")
-    if [[ "$iskvm" =~ "KVM" ]] ;then
-        echo 0
-    else
-        echo 1
-    fi
-}
-
-# _replaceInFile $startMarket $endMarker $customtext $targetFile
-_replaceInFile() {
-
-    # Set function parameters
-    start_string=$1
-    end_string=$2
-    new_string="$3"
-    file_path="$4"
-
-    # Counters
-    start_line_counter=0
-    end_line_counter=0
-    start_found=0
-    end_found=0
-
-    if [ -f $file_path ] ;then
-
-        # Detect Start String
-        while read -r line
-        do
-            ((start_line_counter++))
-            if [[ $line = *$start_string* ]]; then
-                # echo "Start found in $start_line_counter"
-                start_found=$start_line_counter
-                break
-            fi 
-        done < "$file_path"
-
-        # Detect End String
-        while read -r line
-        do
-            ((end_line_counter++))
-            if [[ $line = *$end_string* ]]; then
-                # echo "End found in $end_line_counter"
-                end_found=$end_line_counter
-                break
-            fi 
-        done < "$file_path"
-
-        # Check that deliminters exists
-        if [[ "$start_found" == "0" ]] ;then
-            echo "ERROR: Start deliminter not found."
-            sleep 2
-        fi
-        if [[ "$end_found" == "0" ]] ;then
-            echo "ERROR: End deliminter not found."
-            sleep 2
-        fi
-
-        # Replace text between delimiters
-        if [[ ! "$start_found" == "0" ]] && [[ ! "$end_found" == "0" ]] && [ "$start_found" -le "$end_found" ] ;then
-            # Remove the old line
-            ((start_found++))
-
-            if [ ! "$start_found" == "$end_found" ] ;then    
-                ((end_found--))
-                sed -i "$start_found,$end_found d" $file_path
-            fi
-            # Add the new line
-            sed -i "$start_found i $new_string" $file_path
-        else
-            echo "ERROR: Delimiters syntax."
-            sleep 2
-        fi
-    else
-        echo "ERROR: Target file not found."
-        sleep 2
-    fi
-}
-
-# replaceLineInFile $findText $customtext $targetFile
 _replaceLineInFile() {
-   # Set function parameters
-    file_path=$1
+    target_file=$1
     find_string="$2"
     new_string="$3"
 
@@ -230,34 +107,54 @@ _replaceLineInFile() {
     find_line_counter=0
     line_found=0
 
-    if [ -f $file_path ] ;then
+    if [ -f $target_file ] ;then
 
         # Detect Line
         while read -r line
         do
             ((find_line_counter++))
             if [[ $line = *$find_string* ]]; then
-                # echo "Start found in $start_line_counter"
                 line_found=$find_line_counter
                 break
             fi 
-        done < "$file_path"
+        done < "$target_file"
 
         if [[ ! "$line_found" == "0" ]] ;then
             
             #Remove the line
-            sed -i "$line_found d" $file_path
+            sed -i "$line_found d" $target_file
 
             # Add the new line
-            sed -i "$line_found i $new_string" $file_path            
+            sed -i "$line_found i $new_string" $target_file            
 
         else
-            echo "ERROR: Target line not found."
-            sleep 2
+            echo "ERROR: cannot find $find_string in $target_file."
+            sleep 1
         fi   
 
     else
-        echo "ERROR: Target file not found."
-        sleep 2
+        echo "ERROR: $target_file not found."
+        sleep 1
     fi
+}
+
+_addLineToFile() {
+    new_string="$1"
+    target_file="$2"
+
+    if [[ -f $target_file ]]; then
+        echo $new_string >> $target_file
+    else
+        echo "ERROR: $target_file not found."
+        sleep 1
+    fi
+}
+
+_moveExtensionGSchemas() {
+    uuid="$1"
+    name="$2"
+    schema_file="$HOME/.local/share/gnome-shell/extensions/$uuid/schemas/org.gnome.shell.extensions.$name.gschema.xml"
+    schema_dest="$HOME/.local/share/glib-2.0/schemas/"
+    mkdir -p $schema_dest
+    cp $schema_file $schema_dest
 }

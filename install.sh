@@ -1,199 +1,50 @@
 #!/bin/bash
-
 set -e
 set -u
 set -o pipefail
-# Update mirror list
+
+source ./functions.sh
+
 sudo reflector --verbose -c TW --protocol https --sort rate --latest 20 --download-timeout 5 --threads 5 --save /etc/pacman.d/mirrorlist
+yay -Syu --noconfirm
 
-# Update system
-sudo pacman -Syu --noconfirm
+# install timeshift and make a fresh snapshot
+source .setup/timeshift.sh
 
-# Parse command-line options
-options=$(getopt -o '' --long add-optimus,add-timeshift -n "$0" -- "$@")
-if [ $? -ne 0 ]; then
-  exit 1
-fi
-eval set -- "$options"
-use_timeshift="false"
+# install general packages
+source ./packages/utils.sh
+_installPackagesPacman "${packagesPacman[@]}"
+_installPackagesYay "${packagesYay[@]}"
 
-# Process options: install optimus manager/timeshift
-while true; do
-  case "$1" in
-    --add-optimus)
-      sudo pacman -R --noconfirm gdm
-      yay -S --noconfirm --needed optimus-manager optimus-manager-qt gdm-prime
-      sudo sed -i 's/^#WaylandEnable=false/WaylandEnable=false/' /etc/gdm/custom.conf
-      sudo systemctl enable optimus-manager.service
-      sudo systemctl start optimus-manager
-      shift
-      ;;
-    --add-timeshift)
-      sudo pacman -S --noconfirm --needed timeshift grub-btrfs
-      use_tmeshift="true"
-      shift
-      ;;
-    --)
-      shift
-      break
-      ;;
-    *)
-      echo "Unrecognized option: $1"
-      shift
-      ;;
-  esac
-done
+# install gnome packages
+source ./packages/gnome.sh
+_installPackagesPacman "${packagesPacman[@]}"
+_installPackagesYay "${packagesYay[@]}"
 
-# Install timeshift if not using snapper
-if [ "$using_timeshift" = "false" ]; then
-  yay -S --noconfirm snapper-support
-fi
+# install general applications
+source ./packages/applications.sh
+_installPackagesPacman "${packagesPacman[@]}"
+_installPackagesYay "${packagesYay[@]}"
+source ./setup/fcitx5.sh
+source ./setup/docker.sh
+source ./setup/oh-my-zsh.sh
 
-# Install input method 
-sudo pacman -S --noconfirm --needed fcitx5-im fcitx5-chewing
-env_file="/etc/environment"
-im_config="GTK_IM_MODULE=fcitx\nQT_IM_MODULE=fcitx\nXMODIFIERS=@im=fcitx"
-if ! grep -qF "$im_config" "$env_file"; then
-  echo -e "$im_config" | sudo tee -a "$env_file" > /dev/null
-fi
+# install hypr packages
+source ./packages/my-hypr.sh
+_installPackagesPacman "${packagesPacman[@]}"
+_installPackagesYay "${packagesYay[@]}"
+source ./setup/hypr-plugins.sh
 
-# Install shell
-sudo pacman -S --noconfirm --needed zsh 
+# install theming packages
+source ./packages/theming.sh
+_installPackagesPacman "${packagesPacman[@]}"
+_installPackagesYay "${packagesYay[@]}"
 
-# Install terminal
-sudo pacman -S --noconfirm --needed kitty
+# create config file symlinks
+git clone https://github.com/hank-chouu/my-hypr $HOME
+source ./setup/symlinks.sh
+source $HOME/.zshrc
 
-# Install gnome stuffs
-sudo pacman -S --noconfirm --needed gnome-shell-extensions gnome-browser-connector font-manager gparted gnome-logs
-
-# Install build system & utilities
-sudo pacman -S --noconfirm --needed cmake gcc-fortran gdal tk python-pipx python-build python-setuptools
-
-# Install development tools
-sudo pacman -S --noconfirm --needed r
-# rstudio currently acting weird
-# yay -S --noconfirm --needed rstudio-desktop-bin
-yay -S --noconfirm --needed visual-studio-code-bin
-sudo pacman -S --noconfirm --needed docker
-sudo systemctl enable docker.service
-sudo usermod -aG docker $USER # to run docker without sudo
-
-# Install system info tools
-sudo pacman -S --noconfirm --needed htop btop neofetch baobab ncdu fastfetch
-yay -S --noconfirm --needed hardinfo cpu-x
-
-# Install password manager
-sudo pacman -S --noconfirm --needed bitwarden
-
-# Install office-suite
-sudo pacman -S --noconfirm --needed libreoffice-fresh
-
-# Install app launcher and download themes
-sudo pacman -S --noconfirm --needed rofi
-git clone https://github.com/lr-tech/rofi-themes-collection.git ~/
-mkdir -p ~/.local/share/rofi/themes/
-cp -a ~/rofi-themes-collection/themes/. ~/.local/share/rofi/themes/
-rm -rf ~/rofi-themes-collection
-sudo pacman -S --noconfirm --needed wofi
-
-# Install browser (I need some extension from chromium)
-sudo pacman -S --noconfirm --needed chromium
-
-# Install music streaming
-yay -S --noconfirm --needed ncspot monophony
-
-# Install GUI for package manager
-yay -S --noconfirm --needed octopi bauh
-
-# Install disk space cleaner
-sudo pacman -S --noconfirm --needed bleachbit
-
-# Install balena etcher
-yay -S --needed --noconfirm etcher-bin
-
-# Install cli app
-sudo pacman -S --noconfirm --needed prettier github-cli speedtest-cli xcolor zoxide lsd rclone stow
-yay -S --noconfirm --needed fast
-
-# Install other stuffs
-sudo pacman -S --noconfirm --needed marker vlc
-yay -S --noconfirm --needed angrysearch zotero
-
-# pipx install 
-pipx ensurepath
-source ~/.bashrc
-pipx install poetry
-poetry config virtualenvs.in-project true
-pipx install twine
-pipx install trash-cli
-pipx install gnome-extensions-cli
-
-# install gnome extensions
-gnome-extensions-cli install Vitals@CoreCoding.com 
-gnome-extensions-cli install user-theme@gnome-shell-extensions.gcampax.github.com
-gnome-extensions-cli install appindicatorsupport@rgcjonas.gmail.com
-gnome-extensions-cli install dash-to-dock@micxgx.gmail.com
-gnome-extensions-cli install blur-my-shell@aunetx
-gnome-extensions-cli install AlphabeticalAppGrid@stuarthayhurst
-gnome-extensions-cli install x11gestures@joseexposito.github.io
-gnome-extensions-cli install notification-timeout@chlumskyvaclav.gmail.com
-gnome-extensions-cli install drive-menu@gnome-shell-extensions.gcampax.github.com
-gnome-extensions-cli install arch-update@RaphaelRochet
-gnome-extensions-cli install gnome-ui-tune@itstime.tech
-gnome-extensions-cli install waylandorx11@injcristianrojas.github.com
-
-# add necessary gsettings schema
-./enable-gsettings-schemas.sh dash-to-dock@micxgx.gmail.com dash-to-dock
-./enable-gsettings-schemas.sh user-theme@gnome-shell-extensions.gcampax.github.com user-theme
-./enable-gsettings-schemas.sh AlphabeticalAppGrid@stuarthayhurst AlphabeticalAppGrid
-
-# install icons
-mkdir -p ~/.icons
-wget -qO- https://git.io/papirus-icon-theme-install | DESTDIR="$HOME/.icons" sh
-
-# install theme
-mkdir -p ~/source
-git clone https://github.com/imarkoff/Marble-shell-theme.git ~/source/Marble-shell-theme
-cd ~/source/Marble-shell-theme
-python install.py -a
-rm -rf ~/source/Marble-shell-theme
-
-# tweak settings
-sudo systemctl enable bluetooth
-gsettings set org.gnome.desktop.wm.preferences focus-new-windows 'smart'
-gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
-gsettings set org.gnome.mutter center-new-windows 'true'
-gsettings set org.gnome.shell.extensions.dash-to-dock disable-overview-on-startup 'true' 
-gsettings set org.gnome.shell.extensions.dash-to-dock animate-show-apps 'true' 
-gsettings set org.gnome.shell.extensions.dash-to-dock show-trash 'false' 
-gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts 'true'
-gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts-network 'false'
-gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts-only-mounted 'true'
-gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'FIXED'
-gsettings set org.gnome.shell.extensions.dash-to-dock background-color '#ffffff'
-gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.6
-gsettings set org.gnome.shell.extensions.user-theme name 'Marble-gray-dark'
-gsettings set org.gnome.shell.extensions.alphabetical-app-grid folder-order-position 'start'
-gsettings set org.gnome.shell.extensions.alphabetical-app-grid sort-folder-contents true
-gsettings set org.gnome.desktop.interface show-battery-percentage 'true'
-gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
-gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
-gsettings set org.gnome.desktop.interface font-name 'Cantarell 12'
-gsettings set org.gnome.desktop.interface document-font-name 'Cantarell 12'
-gsettings set org.gnome.desktop.interface monospace-font-name 'Source Code Pro 11'
-gsettings set org.gnome.settings-daemon.plugins.power idle-dim 'false'
-gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'suspend'
-gsettings set org.gnome.settings-daemon.plugins.power power-saver-profile-on-low-battery 'true'
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 900
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 1800
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'suspend'
-
-# set keybindings
-./set-keybindings.sh
-
-# configure zsh
-./zsh-config.sh
-
-# stow config
-./apply-stow.sh
+source ./setup/pipx.sh
+source ./setup/gnome-extensions.sh
+source ./setup/gsettings.sh
