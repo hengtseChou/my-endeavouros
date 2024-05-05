@@ -11,8 +11,9 @@ shellExtensions=(
     # Vitals@CoreCoding.com 
     user-theme@gnome-shell-extensions.gcampax.github.com
 )
+gsettings set org.gnome.shell allow-extension-installation true
 gext install "${shellExtensions[@]}"
 _copyGSchemasToGLib dash-to-dock@micxgx.gmail.com dash-to-dock
 _copyGSchemasToGLib user-theme@gnome-shell-extensions.gcampax.github.com user-theme
 _copyGSchemasToGLib AlphabeticalAppGrid@stuarthayhurst AlphabeticalAppGrid
-glib-compile-schemas $HOME/.local/share/glib-2.0/schemas
+glib-compile-schemas $HOME/.local/share/glib-2.0/schemas/
