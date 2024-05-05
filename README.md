@@ -2,10 +2,12 @@
 
 ## Partition
 
+Ref.: [Speedy Install: EndeavourOS 2021.04.17 ArchLinux with BTRFS, TimeShift, Gnome 40, ZRAM, and PipeWire ](https://www.youtube.com/watch?v=o7JizzJ6SJ0)
+
 1. boot:
    - file system: fat32
-   - mount point: /efi
-   - size: 512MB
+   - mount point: /boot/efi
+   - size: 300MB
    - flag: boot
 2. swap (optional):
    - file system: linuxswap
@@ -13,201 +15,42 @@
    - size: 8GB (some figure close to your memory)
    - flag: swap
 3. root:
-   - file system: ext4
+   - file system: btrfs
    - mount point: /
-   - size: at least 15GB is recommended
-   - no flag needed
-4. home
-   - file system: ext4
-   - mount point: /home
-   - size: whatever you like
+   - size: the remaining disk size
+   - flag: root
+
 
 ## Desktop Enviroment
 
-GNOME
-
-## Boot
-
-~~systemd-boot~~ have some issue with timeshift ([link](https://forum.endeavouros.com/t/solved-failed-to-mount-efi-due-to-timeshift-restore/44154)), switch to grub in the future
-
-
-# Software
-
-## input method
-
-- fcitx5-im
-- fcitx5-chewing
-
-## shell & terminal
-
-- zsh
-- oh-my-zsh (-> powerlevel10k)
-- gnome-terminal
-
-## customizing gnome
-
-- gnome-shell-extensions
-- gnome-browser-connector
-- gnome-tweaks
-- touchegg
-- dconf-editor
-
-## build system & utilities
-
-- cmake
-- electron25
-- gcc-fortran
-- gdal
-- python-pipx
-- python-build
-- python-setuptools
-
-## developement
-
-- r
-- rstudio-desktop-bin (AUR)
-- vscode-studio-code-bin (AUR)
-- docker
-
-## system info
-
-- htop
-- btop
-- neofetch
-- baobab
-- ncdu
-- hardinfo (AUR)
-- cpu-x (AUR)
-
-## graphic card manager ([link](https://github.com/Askannz/optimus-manager))
-
-- optimus-manager
-- gdm-prime (AUR)
-- optimus-manager-qt
-
-## backup
-
-- timeshift
-
-## password manager
-
-- bitwarden
-
-## office-suite
-
-- libreoffice-fresh
-
-## app launcher & appimage launcher
-
-- rofi
-- appimagelauncher (AUR)
-
-## browser
-
-- chromium
-
-## developement
-
-- r
-- rstudio-desktop-bin (AUR)
-- vscode-studio-code-bin (AUR)
-- docker
-
-## music streaming
-
-- ncspot
-- monophony (AUR)
-
-## gui for package manager
-
-- octopi (AUR)
-- bauh (AUR)
-
-## disk space cleaner
-
-- bleachbit
-
-## pipx
-
-- twine
-- poetry
-- trash-cli
-
-## cli app
-
-- prettier
-- github-cli
-- fast (AUR)
-- speedtest-cli
-- xcolor
-- zoxide
-- lsd
-- stow
-- rclone
-
-## others
-
-- font-manager
-- gitg
-- gparted
-- gnome-logs
-- angrysearch (AUR)
-- zotero (AUR)
-- marker
-- vlc
-
-# Gnome-extensions (by uuid)
-
-- user-theme@gnome-shell-extensions.gcampax.github.com
-- appindicatorsupport@rgcjonas.gmail.com
-- dash-to-dock@micxgx.gmail.com
-- blur-my-shell@aunetx
-- Vitals@CoreCoding.com
-- AlphabeticalAppGrid@stuarthayhurst
-- x11gestures@joseexposito.github.io
-- notification-timeout@chlumskyvaclav.gmail.com
-- drive-menu@gnome-shell-extensions.gcampax.github.com
-- arch-update@RaphaelRochet
-- gnome-ui-tune@itstime.tech
-
-# Tweak settings
-
-## Change power management
-
-- show battery percentage, auto suspend only on battery power
-
-## keyboard shortcut
-
-- gnome-terminal: ctl+alt+t
-- gnome-control-center: ctl+alt+s
-- rofi -show drun: ctl+space
-- windows-> hide window: alt+h
-- navigation-> hide all windows: super+h
-- navigation-> switch windows: alt+tab
-
-## settings
-
-- just perfection: skip overview when login (also in dash to dock appearance section), windoew demands attention focus
-- center new window
-
-## systemctl
-
-### fix nvidia-related issues ([link](https://forum.endeavouros.com/t/how-to-fix-the-sleep-suspend-issue-glitch-with-crashing-nvidia-propietary-drivers-and-x11-wayland-on-kde-plasma-arch-endeavouros/42303/3))
-
-```
-sudo systemctl enable nvidia-suspend.service
-sudo systemctl enable nvidia-hibernate.service
-sudo systemctl enable nvidia-resume.service
-```
-
-## docker
-
-```
-sudo systemctl enable docker.service
-sudo usermod -aG docker $USER # to run docker without sudo
-```
+GNOME/Hyprland
 
 # My neofetch
+
+Current setup
+
+```
+                     ./o.                  hank@pavilion-plus
+                   ./sssso-                ------------------
+                 `:osssssss+-              OS: EndeavourOS Linux x86_64
+               `:+sssssssssso/.            Host: HP Pavilion Plus Laptop 14-eh1xxx
+             `-/ossssssssssssso/.          Kernel: 6.8.9-arch1-1
+           `-/+sssssssssssssssso+:`        Uptime: 1 day, 8 hours, 3 mins
+         `-:/+sssssssssssssssssso+/.       Packages: 1318 (pacman)
+       `.://osssssssssssssssssssso++-      Shell: zsh 5.9
+      .://+ssssssssssssssssssssssso++:     Resolution: 2880x1800
+    .:///ossssssssssssssssssssssssso++:    DE: GNOME 46.1
+  `:////ssssssssssssssssssssssssssso+++.   WM: Mutter
+`-////+ssssssssssssssssssssssssssso++++-   WM Theme: Yaru-dark
+ `..-+oosssssssssssssssssssssssso+++++/`   Theme: Yaru [GTK2/3]
+   ./++++++++++++++++++++++++++++++/:.     Icons: Yaru [GTK2/3]
+  `:::::::::::::::::::::::::------``       Terminal: alacritty
+                                           CPU: 13th Gen Intel i5-13500H (16) @ 4.700GHz
+                                           GPU: Intel Raptor Lake-P [Iris Xe Graphics]
+                                           Memory: 5525MiB / 15707MiB
+```
+
+In memory of my old Acer Laptop
 
 ```
 ╭─░▒▓ hank@endeavour: ~
@@ -231,5 +74,5 @@ sudo usermod -aG docker $USER # to run docker without sudo
                                            GPU: NVIDIA GeForce MX250
                                            GPU: Intel Iris Plus Graphics G1
                                            Memory: 3217MiB / 7624MiB
-
 ```
+
