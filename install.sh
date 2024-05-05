@@ -16,7 +16,7 @@ source ./packages/utils.sh
 _installPackagesPacman "${packagesPacman[@]}"
 _installPackagesYay "${packagesYay[@]}"
 
-# install gnome packages
+# install gnome packages in addition to eos-gnome-pkg-list
 source ./packages/gnome.sh
 _installPackagesPacman "${packagesPacman[@]}"
 _installPackagesYay "${packagesYay[@]}"
@@ -27,7 +27,7 @@ _installPackagesPacman "${packagesPacman[@]}"
 _installPackagesYay "${packagesYay[@]}"
 source ./setup/fcitx5.sh
 source ./setup/docker.sh
-source ./setup/oh-my-zsh.sh
+source ./setup/zsh.sh # after here the shell will be zsh
 
 # install hypr packages
 source ./packages/my-hypr.sh
