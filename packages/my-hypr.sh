@@ -8,6 +8,7 @@ packagesPacman=(
     "hypridle"
     "hyprland"
     "hyprlock"
+    "imagemagick"
     "python-pywal"
     "rofi-wayland"
     "slurp"

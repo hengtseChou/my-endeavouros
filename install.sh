@@ -40,6 +40,9 @@ source ./packages/theming.sh
 _installPackagesPacman "${packagesPacman[@]}"
 _installPackagesYay "${packagesYay[@]}"
 
+# setup grub theme
+source ./setup/grub.sh
+
 # create config file symlinks
 git clone https://github.com/hank-chouu/my-hypr $HOME
 source ./setup/symlinks.sh
