@@ -150,7 +150,7 @@ _addLineToFile() {
     fi
 }
 
-_moveExtensionGSchemas() {
+_copyGSchemasToGLib() {
     uuid="$1"
     name="$2"
     schema_file="$HOME/.local/share/gnome-shell/extensions/$uuid/schemas/org.gnome.shell.extensions.$name.gschema.xml"
