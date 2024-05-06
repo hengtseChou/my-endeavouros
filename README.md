@@ -8,9 +8,6 @@ Ref.: [Speedy Install: EndeavourOS 2021.04.17 ArchLinux with BTRFS, TimeShift, G
    - file system: fat32
    - mount point: /boot/efi
    - size: 300MB
-   - mount point: /boot/efi
-   - size: 300MB
-   - flag: boot
 2. swap (optional):
    - file system: linuxswap
    - no mount point
@@ -19,11 +16,7 @@ Ref.: [Speedy Install: EndeavourOS 2021.04.17 ArchLinux with BTRFS, TimeShift, G
 3. root:
 
    - file system: btrfs
-   - file system: btrfs
    - mount point: /
-   - size: the remaining disk size
-   - flag: root
-
    - size: the remaining disk size
    - flag: root
 
