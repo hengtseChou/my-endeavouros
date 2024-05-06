@@ -7,7 +7,7 @@ shellExtensions=(
     dash-to-dock@micxgx.gmail.com
     drive-menu@gnome-shell-extensions.gcampax.github.com
     gnome-ui-tune@itstime.tech
-    notification-timeout@chlumskyvaclav.gmail.com
+    # notification-timeout@chlumskyvaclav.gmail.com
     # Vitals@CoreCoding.com 
     user-theme@gnome-shell-extensions.gcampax.github.com
 )
