@@ -48,6 +48,7 @@ git clone https://github.com/hank-chouu/my-hypr $HOME
 source ./setup/symlinks.sh
 source $HOME/.zshrc
 
+source ./setup/git.sh
 source ./setup/pipx.sh
 source ./setup/gnome-extensions.sh
 source ./setup/gsettings.sh
