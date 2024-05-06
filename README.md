@@ -4,8 +4,6 @@
 
 Ref.: [Speedy Install: EndeavourOS 2021.04.17 ArchLinux with BTRFS, TimeShift, Gnome 40, ZRAM, and PipeWire ](https://www.youtube.com/watch?v=o7JizzJ6SJ0)
 
-Ref.: [Speedy Install: EndeavourOS 2021.04.17 ArchLinux with BTRFS, TimeShift, Gnome 40, ZRAM, and PipeWire ](https://www.youtube.com/watch?v=o7JizzJ6SJ0)
-
 1. boot:
    - file system: fat32
    - mount point: /boot/efi
@@ -19,6 +17,7 @@ Ref.: [Speedy Install: EndeavourOS 2021.04.17 ArchLinux with BTRFS, TimeShift, G
    - size: 8GB (some figure close to your memory)
    - flag: swap
 3. root:
+
    - file system: btrfs
    - file system: btrfs
    - mount point: /
@@ -27,7 +26,6 @@ Ref.: [Speedy Install: EndeavourOS 2021.04.17 ArchLinux with BTRFS, TimeShift, G
 
    - size: the remaining disk size
    - flag: root
-
 
 ## Desktop Enviroment
 
@@ -42,13 +40,14 @@ current holding: rstudio-desktop-bin swww chromium r fcitx5 fcitx5-chewing
 Current setup
 
 ```
+> neofetch
                      ./o.                  hank@pavilion-plus
                    ./sssso-                ------------------
                  `:osssssss+-              OS: EndeavourOS Linux x86_64
                `:+sssssssssso/.            Host: HP Pavilion Plus Laptop 14-eh1xxx
              `-/ossssssssssssso/.          Kernel: 6.8.9-arch1-1
-           `-/+sssssssssssssssso+:`        Uptime: 1 day, 8 hours, 3 mins
-         `-:/+sssssssssssssssssso+/.       Packages: 1318 (pacman)
+           `-/+sssssssssssssssso+:`        Uptime: 1 day, 22 hours, 27 mins
+         `-:/+sssssssssssssssssso+/.       Packages: 1322 (pacman)
        `.://osssssssssssssssssssso++-      Shell: zsh 5.9
       .://+ssssssssssssssssssssssso++:     Resolution: 2880x1800
     .:///ossssssssssssssssssssssssso++:    DE: GNOME 46.1
@@ -59,7 +58,7 @@ Current setup
   `:::::::::::::::::::::::::------``       Terminal: alacritty
                                            CPU: 13th Gen Intel i5-13500H (16) @ 4.700GHz
                                            GPU: Intel Raptor Lake-P [Iris Xe Graphics]
-                                           Memory: 5525MiB / 15707MiB
+                                           Memory: 7836MiB / 15707MiB
 ```
 
 In memory of my old Acer Laptop
@@ -87,5 +86,3 @@ In memory of my old Acer Laptop
                                            GPU: Intel Iris Plus Graphics G1
                                            Memory: 3217MiB / 7624MiB
 ```
-
-
