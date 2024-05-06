@@ -50,6 +50,7 @@ source $HOME/.zshrc
 
 source ./setup/git.sh
 source ./setup/npm.sh
+source ./setup/go.sh
 source ./setup/pipx.sh
 source ./setup/gnome-extensions.sh
 source ./setup/gsettings.sh
