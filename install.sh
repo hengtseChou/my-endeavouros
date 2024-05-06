@@ -49,6 +49,7 @@ source ./setup/symlinks.sh
 source $HOME/.zshrc
 
 source ./setup/git.sh
+source ./setup/npm.sh
 source ./setup/pipx.sh
 source ./setup/gnome-extensions.sh
 source ./setup/gsettings.sh
