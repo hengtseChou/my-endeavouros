@@ -70,6 +70,7 @@ gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folder
     'balena-etcher.desktop', \
     'bitwarden.desktop', \
     'org.bleachbit.BleachBit.desktop', \
+    'btrfs-assistant.desktop', \
     'org.gnome.Calculator.desktop', \
     'org.gnome.Calendar.desktop', \
     'org.gnome.clocks.desktop', \
