@@ -29,10 +29,10 @@ gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-typ
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal alacritty
 
 # keybindings in gnome
-gsettings set org.gnome.desktop.wm.keybindings minimize "['<Alt>h']" 
-gsettings set org.gnome.desktop.wm.keybindings show-desktop "['<Super>h']" 
-gsettings set org.gnome.desktop.wm.keybindings switch-applications "@as []" 
-gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Alt>Tab']" 
+gsettings set org.gnome.desktop.wm.keybindings minimize "['<Alt>h']"
+gsettings set org.gnome.desktop.wm.keybindings show-desktop "['<Super>h']"
+gsettings set org.gnome.desktop.wm.keybindings switch-applications "@as []"
+gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Alt>Tab']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'terminal'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'alacritty'
@@ -151,7 +151,7 @@ gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folder
     'xdvi.desktop', \
     'yad-settings.desktop']"
 
-# gdm 
+# gdm
 gsettings set io.github.realmazharhussain.GdmSettings.appearance cursor-theme 'Adwaita'
 gsettings set io.github.realmazharhussain.GdmSettings.appearance shell-theme 'Yaru-blue-dark'
 gsettings set io.github.realmazharhussain.GdmSettings.appearance icon-theme 'Yaru'

@@ -8,7 +8,7 @@ shellExtensions=(
     drive-menu@gnome-shell-extensions.gcampax.github.com
     gnome-ui-tune@itstime.tech
     # notification-timeout@chlumskyvaclav.gmail.com
-    # Vitals@CoreCoding.com 
+    # Vitals@CoreCoding.com
     user-theme@gnome-shell-extensions.gcampax.github.com
 )
 gsettings set org.gnome.shell allow-extension-installation true
