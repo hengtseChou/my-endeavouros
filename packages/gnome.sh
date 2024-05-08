@@ -11,5 +11,5 @@ packagesPacman=(
 packagesYay=(
     "gdm-settings"
     "nautilus-open-any-terminal"
-    "nwg-look"
+    "nwg-look-bin"
 );
