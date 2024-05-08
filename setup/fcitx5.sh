@@ -1,7 +1,7 @@
 # setup wayland
 # ref: https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland
-sudo _addLineToFile "XMODIFIERS=@im=fcitx" /etc/environment
-sudo _addLineToFile "QT_IM_MODULE=fcitx" /etc/environment
+FUNC=$(declare -f _addLineToFile)
+sudo bash -c "$FUNC; _addLineToFile 'XMODIFIERS=@im=fcitx\nQT_IM_MODULE=fcitx' /etc/environment"
 # configs will be added through my-hypr configuration
 # _addLineToFile "gtk-im-module=\"fcitx\"" $HOME/.gtkrc-2.0
 # _addLineToFile "gtk-im-module=fcitx" $HOME/.config/gtk-3.0/settings.ini 
