@@ -17,6 +17,5 @@ packagesPacman=(
 );
 
 packagesYay=(
-    "rstudio-desktop-bin"
     "visual-studio-code-bin"
 );
