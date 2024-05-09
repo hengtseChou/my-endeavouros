@@ -41,6 +41,11 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'gnome-control-center'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Control><Alt>s'
 
+# text editor
+gsettings set org.gnome.TextEditor show-line-numbers true
+gsettings set org.gnome.TextEditor show-right-margin false
+gsettings set org.gnome.TextEditor restore-session false
+
 # theme
 gsettings set org.gnome.desktop.interface cursor-theme "Adwaita"
 gsettings set org.gnome.desktop.interface cursor-size 24

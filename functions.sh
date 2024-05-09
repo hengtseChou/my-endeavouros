@@ -39,8 +39,10 @@ _installPackagesPacman() {
         if [[ $(_isInstalledPacman "${pkg}") == 0 ]]; then
             echo ":: ${pkg} is already installed."
             continue
+        else
+            toInstall+=("${pkg}")
         fi
-        toInstall+=("${pkg}")
+
     done
 
     if [[ "${toInstall[@]}" == "" ]]; then
@@ -58,8 +60,9 @@ _installPackagesYay() {
         if [[ $(_isInstalledYay "${pkg}") == 0 ]]; then
             echo ":: ${pkg} is already installed."
             continue
+        else
+            toInstall+=("${pkg}")
         fi
-        toInstall+=("${pkg}")
     done
 
     if [[ "${toInstall[@]}" == "" ]]; then
@@ -161,20 +164,26 @@ _prompt_proceed() {
     local userInput
     local defaultOption="[Y/n]"
     local defaultReturnValue=0
-    case $2 in
-    -i | --inverse)
+    local inverseOption=false
+
+    # Check if --inverse or --noconfirm options are provided
+    if [[ "$*" == *"--inverse"* ]]; then
+        inverseOption=true
         defaultOption="[y/N]"
         defaultReturnValue=1
-        ;;
-    esac
-    echo "$1"
+    fi
+
+    echo -e "$1"
+
     while true; do
-        read -p "Proceed? $defaultOption " userInput
+
+        read -p ":: Proceed? $defaultOption " userInput
         userInput=${userInput:-"${defaultOption:1:1}"} # Default value is either 'y' or 'n' based on the option
+
         case $userInput in
         [yY]*) return $defaultReturnValue ;;
         [nN]*) return $((1 - defaultReturnValue)) ;;
-        *) echo "Please enter 'y' or 'n'." ;;
+        *) echo ":: Please enter 'y' or 'n'." ;;
         esac
     done
 }
