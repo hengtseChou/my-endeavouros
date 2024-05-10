@@ -28,7 +28,7 @@ GNOME/Hyprland.
 
 Install EndeavourOS with GNOME desktop, then run the installation script.
 
-# My neofetch
+##  My neofetch
 
 Current setup
 
