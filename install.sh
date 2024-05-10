@@ -19,22 +19,24 @@ cat <<"EOF"
 EOF
 
 source ./functions.sh
-echo ":: System update"
-sudo reflector --verbose -c TW --protocol https --sort rate --latest 20 --download-timeout 5 --threads 5 --save /etc/pacman.d/mirrorlist
-yay -Syu --noconfirm
+if _prompt_proceed ":: Update mirror and upgrade system."; then
+  sudo reflector --verbose -c TW --protocol https --sort rate --latest 20 --download-timeout 5 --threads 5 --save /etc/pacman.-Syu d/mirrorlist
+  yay -Syu --noconfirm
+fi
 
 # install figlet first because i want big words
-_installPackagesPacman figlet
+# figlet figlet
+# sudo pacman -S --noconfirm --needed figlet
 figlet Timeshift
 if _prompt_proceed "\n:: Install Timeshift and make a fresh snapshot."; then
-  source .setup/timeshift.sh
+  source ./setup/timeshift.sh
 fi
 
 # install general packages
 figlet Utils
 if _prompt_proceed "\n:: Install additional utils."; then
   source ./packages/utils.sh
-  _installPackagesPacman "${packagesPacman[@]}"
+  sudo pacman -S --noconfirm --needed "${packagesPacman[@]}"
   _installPackagesYay "${packagesYay[@]}"
 fi
 
@@ -43,7 +45,7 @@ figlet GNOME
 if _prompt_proceed "\n:: Install additional GNOME packages."; then
   install_gnome=1
   source ./packages/gnome.sh
-  _installPackagesPacman "${packagesPacman[@]}"
+  sudo pacman -S --noconfirm --needed "${packagesPacman[@]}"
   _installPackagesYay "${packagesYay[@]}"
 fi
 
@@ -52,16 +54,16 @@ figlet Hyprland
 if _prompt_proceed "\n:: Install Hyprland environment."; then
   install_hypr=1
   source ./packages/my-hypr.sh
-  _installPackagesPacman "${packagesPacman[@]}"
+  sudo pacman -S --noconfirm --needed "${packagesPacman[@]}"
   _installPackagesYay "${packagesYay[@]}"
-  source ./setup/hypr-plugins.sh
+  # source ./setup/hypr-plugins.sh
 fi
 
 # install general applications
 figlet Apps
 if _prompt_proceed "\n:: Install useful applications."; then
   source ./packages/applications.sh
-  _installPackagesPacman "${packagesPacman[@]}"
+  sudo pacman -S --noconfirm --needed "${packagesPacman[@]}"
   _installPackagesYay "${packagesYay[@]}"
   source ./setup/fcitx5.sh
   source ./setup/zsh.sh
@@ -72,7 +74,7 @@ figlet Develop
 if _prompt_proceed "\n:: Install development toolkits."; then
   install_develop=1
   source ./packages/development.sh
-  _installPackagesPacman "${packagesPacman[@]}"
+  sudo pacman -S --noconfirm --needed "${packagesPacman[@]}"
   _installPackagesYay "${packagesYay[@]}"
   source ./setup/rstudio.sh
   source ./setup/docker.sh
@@ -83,7 +85,7 @@ figlet Themes
 if _prompt_proceed "\n:: Install theming packages."; then
   install_theming=1
   source ./packages/theming.sh
-  _installPackagesPacman "${packagesPacman[@]}"
+  sudo pacman -S --noconfirm --needed "${packagesPacman[@]}"
   _installPackagesYay "${packagesYay[@]}"
 fi
 
@@ -97,9 +99,8 @@ fi
 if [ "$install_hypr" -eq 1 ] && [ "$install_theming" -eq 1 ]; then
   figlet my-hypr
   if _prompt_proceed "\n:: Install my Hyprland configs."; then
-    git clone https://github.com/hank-chouu/my-hypr $HOME
+    git clone https://github.com/hank-chouu/my-hypr $HOME/my-hypr
     source ./setup/symlinks.sh
-    source $HOME/.zshrc
   fi
 fi
 
@@ -110,7 +111,7 @@ if [ "$install_develop" -eq 1 ]; then
     source ./setup/npm.sh
     source ./setup/go.sh
     source ./setup/pipx.sh
-    if [ "$install_gnome" -eq 1] && [ "$install_theming" -eq 1 ]; then
+    if [ "$install_gnome" -eq 1 ] && [ "$install_theming" -eq 1 ]; then
       source ./setup/gnome-extensions.sh
       source ./setup/gsettings.sh
     fi
