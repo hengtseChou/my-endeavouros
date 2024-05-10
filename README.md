@@ -22,36 +22,58 @@ Ref.: [Speedy Install: EndeavourOS 2021.04.17 ArchLinux with BTRFS, TimeShift, G
 
 ## Desktop Enviroment
 
-GNOME/Hyprland
+GNOME/Hyprland.
 
 ## Note
 
-current holding: rstudio-desktop-bin swww chromium r fcitx5 fcitx5-chewing
+Install EndeavourOS with GNOME desktop, then run the installation script.
 
 # My neofetch
 
 Current setup
 
 ```
-> neofetch
-                     ./o.                  hank@pavilion-plus
-                   ./sssso-                ------------------
+                     ./o.                  hank@EndeavourOS
+                   ./sssso-                ----------------
                  `:osssssss+-              OS: EndeavourOS Linux x86_64
                `:+sssssssssso/.            Host: HP Pavilion Plus Laptop 14-eh1xxx
-             `-/ossssssssssssso/.          Kernel: 6.8.9-arch1-1
-           `-/+sssssssssssssssso+:`        Uptime: 1 day, 22 hours, 27 mins
-         `-:/+sssssssssssssssssso+/.       Packages: 1322 (pacman)
+             `-/ossssssssssssso/.          Kernel: 6.8.9-arch1-2
+           `-/+sssssssssssssssso+:`        Uptime: 19 mins
+         `-:/+sssssssssssssssssso+/.       Packages: 1254 (pacman)
        `.://osssssssssssssssssssso++-      Shell: zsh 5.9
+      .://+ssssssssssssssssssssssso++:     Resolution: 2880x1800
+    .:///ossssssssssssssssssssssssso++:    DE: Hyprland
+  `:////ssssssssssssssssssssssssssso+++.   Theme: Yaru [GTK2/3]
+`-////+ssssssssssssssssssssssssssso++++-   Icons: Yaru [GTK2/3]
+ `..-+oosssssssssssssssssssssssso+++++/`   Terminal: alacritty
+   ./++++++++++++++++++++++++++++++/:.     CPU: 13th Gen Intel i5-13500H (16) @ 4.700GHz
+  `:::::::::::::::::::::::::------``       GPU: Intel Raptor Lake-P [Iris Xe Graphics]
+                                           Memory: 3726MiB / 15707MiB
+
+```
+
+fresh install
+
+```
+                     ./o.                  hank@EndeavourOS
+                   ./sssso-                ----------------
+                 `:osssssss+-              OS: EndeavourOS Linux x86_64
+               `:+sssssssssso/.            Host: HP Pavilion Plus Laptop 14-eh1
+             `-/ossssssssssssso/.          Kernel: 6.8.9-arch1-2
+           `-/+sssssssssssssssso+:`        Uptime: 23 mins
+         `-:/+sssssssssssssssssso+/.       Packages: 849 (pacman)
+       `.://osssssssssssssssssssso++-      Shell: bash 5.2.26
       .://+ssssssssssssssssssssssso++:     Resolution: 2880x1800
     .:///ossssssssssssssssssssssssso++:    DE: GNOME 46.1
   `:////ssssssssssssssssssssssssssso+++.   WM: Mutter
-`-////+ssssssssssssssssssssssssssso++++-   WM Theme: Yaru-dark
- `..-+oosssssssssssssssssssssssso+++++/`   Theme: Yaru [GTK2/3]
-   ./++++++++++++++++++++++++++++++/:.     Icons: Yaru [GTK2/3]
-  `:::::::::::::::::::::::::------``       Terminal: alacritty
-                                           CPU: 13th Gen Intel i5-13500H (16) @ 4.700GHz
-                                           GPU: Intel Raptor Lake-P [Iris Xe Graphics]
-                                           Memory: 7836MiB / 15707MiB
+`-////+ssssssssssssssssssssssssssso++++-   WM Theme: Adwaita
+ `..-+oosssssssssssssssssssssssso+++++/`   Theme: Adwaita [GTK2/3]
+   ./++++++++++++++++++++++++++++++/:.     Icons: Qogir [GTK2/3]
+  `:::::::::::::::::::::::::------``       Terminal: kgx
+                                           CPU: 13th Gen Intel i5-13500H (16) @
+                                           GPU: Intel Raptor Lake-P [Iris Xe Gr
+                                           Memory: 2507MiB / 15707MiB
+
 ```
 
 In memory of my old Acer Laptop
@@ -78,4 +100,5 @@ In memory of my old Acer Laptop
                                            GPU: NVIDIA GeForce MX250
                                            GPU: Intel Iris Plus Graphics G1
                                            Memory: 3217MiB / 7624MiB
+
 ```
