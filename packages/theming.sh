@@ -9,7 +9,7 @@ packagesPacman=(
     "ttf-fira-code"
     "ttf-firacode-nerd"
     "ttf-jetbrains-mono"
-    "ttf-jetbrains-mone-nerd"
+    "ttf-jetbrains-mono-nerd"
     "ttf-meslo-nerd"
     "ttf-noto-nerd"
     "ttf-ubuntu-font-family"
