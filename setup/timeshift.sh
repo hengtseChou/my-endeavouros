@@ -4,10 +4,12 @@ sudo systemctl enable cronie.service
 sudo systemctl start cronie.service
 sudo timeshift --create --comment "fresh install"
 sudo grub-mkconfig -o /boot/grub/grub.cfg
-FUNC=$(declare -f _replaceLineInFile)
-sudo bash -c "$FUNC; _replaceLineInFile \
-    /etc/systemd/system/grub-btrfsd.service \
-    'ExecStart=/usr/bin/grub-btrfsd --syslog /.snapshots' \
-    'ExecStart=/usr/bin/grub-btrfsd --syslog --timeshift-auto'"
+# sudo systemctl edit --full grub-btrfsd
+# code below does not work and may need further investigate
+# FUNC=$(declare -f _replaceLineInFile)
+# sudo bash -c "$FUNC; _replaceLineInFile \
+#     /etc/systemd/system/grub-btrfsd.service \
+#     'ExecStart=/usr/bin/grub-btrfsd --syslog /.snapshots' \
+#     'ExecStart=/usr/bin/grub-btrfsd --syslog --timeshift-auto'"
 sudo systemctl start grub-btrfsd
 sudo systemctl enable grub-btrfsd
