@@ -1,3 +1,4 @@
+gsettings set org.gnome.desktop.background picture-uri "file://$HOME/my-hypr/wallpapers/current_wallpaper.jpg"
 gsettings set org.gnome.desktop.wm.preferences focus-new-windows 'smart'
 gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
 gsettings set org.gnome.mutter center-new-windows true
@@ -16,6 +17,8 @@ gsettings set org.gnome.shell.extensions.user-theme name 'Yaru-dark'
 gsettings set org.gnome.shell.extensions.alphabetical-app-grid folder-order-position 'start'
 gsettings set org.gnome.shell.extensions.alphabetical-app-grid sort-folder-contents true
 gsettings set org.gnome.desktop.interface show-battery-percentage true
+gsettings set org.gnome.desktop.interface enable-hot-corners false
+gsettings set org.gnome.desktop.interface font-name "Ubuntu 12"
 gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true
 gsettings set org.gnome.settings-daemon.plugins.power idle-dim false
 gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'suspend'
@@ -71,16 +74,16 @@ gsettings set org.gnome.shell favorite-apps "[ \
     'Alacritty.desktop', \
     'code.desktop', \
     'rstudio.desktop']"
-gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/applications/ apps "[ \
+gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/applications/ apps "[ \ 
     'balena-etcher.desktop', \
     'bitwarden.desktop', \
     'org.bleachbit.BleachBit.desktop', \
     'btrfs-assistant.desktop', \
     'org.gnome.Calculator.desktop', \
-    'org.gnome.Calendar.desktop', \
     'org.gnome.clocks.desktop', \
     'nl.hjdskes.gcolor3.desktop', \
     'wl-color-picker.desktop', \
+    'org.gnome.Console.desktop', \
     'org.gnome.Evince.desktop', \
     'org.fcitx.Fcitx5.desktop', \
     'org.gnome.FileRoller.desktop', \
@@ -93,7 +96,12 @@ gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folder
     'com.github.jeromerobert.pdfarranger.desktop', \
     'ranger.desktop', \
     'rofi.desktop', \
-    'org.gnome.Screenshot.desktop']"
+    'org.gnome.Screenshot.desktop', \
+    'org.gnome.Terminal.desktop', \
+    'org.gnome.Calendar.desktop', \
+    'uxterm.desktop', \
+    'org.gnome.Weather.desktop', \
+    'xterm.desktop']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/media/ apps "[ \
     'mpv.desktop', \
     'spotify-launcher.desktop', \
@@ -113,45 +121,52 @@ gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folder
     'org.gnome.Extensions.desktop', \
     'fcitx5-configtool.desktop', \
     'io.github.realmazharhussain.GdmSettings.desktop', \
-    'cups.desktop', \
     'gnome-nettool.desktop', \
-    'system-config-printer.desktop', \
     'pavucontrol.desktop', \
     'rofi-theme-selector.desktop', \
-    'org.gnome.Settings.desktop']"
+    'org.gnome.Settings.desktop', \
+    'org.gnome.tweaks.desktop', \
+    'cups.desktop', \
+    'system-config-printer.desktop']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/tools/ apps "[ \
     'btop.desktop', \
+    'io.github.thetumultuousunicornofdarkness.cpu-x.desktop', \
     'org.gnome.baobab.desktop', \
     'org.gnome.DiskUtility.desktop', \
     'hardinfo2.desktop', \
-    'lstopo.desktop', \
     'htop.desktop', \
     'org.gnome.PowerStats.desktop', \
     'org.gnome.SystemMonitor.desktop', \
+    'lstopo.desktop', \
     'org.gnome.Usage.desktop']"
 gsettings set org.gnome.desktop.app-folders.folder:/org/gnome/desktop/app-folders/folders/utilities/ apps "[ \
     'bssh.desktop', \
     'bvnc.desktop', \
     'avahi-discover.desktop', \
     'cmake-gui.desktop', \
-    'eos-update-notifier-configure.desktop', \
     'electron28.desktop', \
     'eos-apps-info.desktop', \
     'eos-log-tool.desktop', \
     'eos-quickstart.desktop', \
     'eos-update.desktop', \
     'org.fcitx.fcitx5-migrator.desktop', \
+    'firewall-config.desktop', \
     'org.gnome.FontViewer.desktop', \
     'yad-icon-browser.desktop', \
     'ipython.desktop', \
     'kbd-layout-viewer5.desktop', \
     'octopi-cachecleaner.desktop', \
+    'assistant.desktop', \
+    'designer.desktop', \
+    'linguist.desktop', \
+    'qdbusviewer.desktop', \
     'qv4l2.desktop', \
     'qvidcap.desktop', \
     'r.desktop', \
     'reflector-simple.desktop', \
     'stoken-gui.desktop', \
     'stoken-gui-small.desktop', \
+    'eos-update-notifier-configure.desktop', \
     'welcome.desktop', \
     'xdvi.desktop', \
     'yad-settings.desktop']"
