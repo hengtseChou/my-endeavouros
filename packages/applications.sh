@@ -27,5 +27,5 @@ packagesYay=(
     "hardinfo2"
     "octopi"
     "wl-color-picker"
-    "zotero"
+    "zotero-bin"
 )
