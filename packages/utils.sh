@@ -1,4 +1,5 @@
 packagesPacman=(
+    "bc"
     "blueman"
     "cmatrix"
     "fastfetch"
@@ -25,4 +26,5 @@ packagesYay=(
     "ngrok"
     "peaclock"
     "pfetch"
+    "rate-mirrors-bin"
 )
