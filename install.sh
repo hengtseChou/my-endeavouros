@@ -113,7 +113,9 @@ if [ "$install_develop" -eq 1 ]; then
     source ./setup/pipx.sh
     if [ "$install_gnome" -eq 1 ] && [ "$install_theming" -eq 1 ]; then
       source ./setup/gnome-extensions.sh
-      source ./setup/gsettings.sh
+      # use dconf to apply desired gsettings
+      # dump: dconf dump / > dconf-settings.ini
+      dconf load / < ./dconf-settings.ini
     fi
   fi
 fi

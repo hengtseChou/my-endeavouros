@@ -11,7 +11,6 @@ shellExtensions=(
     # Vitals@CoreCoding.com
     user-theme@gnome-shell-extensions.gcampax.github.com
 )
-gsettings set org.gnome.shell allow-extension-installation true
 gext install "${shellExtensions[@]}"
 _copyGSchemasToGLib dash-to-dock@micxgx.gmail.com dash-to-dock
 _copyGSchemasToGLib user-theme@gnome-shell-extensions.gcampax.github.com user-theme
