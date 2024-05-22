@@ -8,6 +8,7 @@ packagesPacman=(
     "hypridle"
     "hyprland"
     "hyprlock"
+    "hyprpaper"
     "imagemagick"
     "python-pywal"
     "rofi-wayland"
@@ -19,6 +20,5 @@ packagesPacman=(
 );
 
 packagesYay=(
-    "swww"
     "wlogout"
 );
