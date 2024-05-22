@@ -187,3 +187,8 @@ _prompt_proceed() {
         esac
     done
 }
+
+_next_section() {
+    clear
+    sleep 0.5
+}
