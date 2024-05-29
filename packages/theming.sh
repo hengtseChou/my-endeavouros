@@ -22,8 +22,6 @@ packagesPacman=(
 )
 
 packagesYay=(
-    "marble-shell-theme"
-    "yaru-gnome-shell-theme"
     "yaru-gtk-theme"
     "yaru-gtksourceview-theme"
     "yaru-icon-theme"
