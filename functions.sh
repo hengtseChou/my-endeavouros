@@ -118,7 +118,7 @@ _replaceLineInFile() {
                 line_found=$find_line_counter
                 break
             fi
-        done <"$target_file"
+        done < "$target_file"
 
         if [[ ! "$line_found" == "0" ]]; then
 

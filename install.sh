@@ -125,7 +125,7 @@ if [ "$install_develop" -eq 1 ]; then
             source ./setup/gnome-extensions.sh
             # use dconf to apply desired gsettings
             # dump: dconf dump / > dconf-settings.ini
-            dconf load / <./dconf-settings.ini
+            dconf load / < ./setup/dconf-settings.ini
         fi
     fi
 fi
