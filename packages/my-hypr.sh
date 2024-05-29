@@ -21,4 +21,5 @@ packagesPacman=(
 
 packagesYay=(
     "wlogout"
+    "indicator-sound-switcher"
 );
