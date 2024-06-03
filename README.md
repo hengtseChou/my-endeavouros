@@ -1,6 +1,10 @@
-# Installation
+# Hank's EndeavourOS
 
-## Partition
+This repo is the post-installation setup for my EndeavourOS. 
+
+## Pre-installation
+
+### Partition
 
 Ref.: [Speedy Install: EndeavourOS 2021.04.17 ArchLinux with BTRFS, TimeShift, Gnome 40, ZRAM, and PipeWire ](https://www.youtube.com/watch?v=o7JizzJ6SJ0)
 
@@ -20,15 +24,11 @@ Ref.: [Speedy Install: EndeavourOS 2021.04.17 ArchLinux with BTRFS, TimeShift, G
    - size: the remaining disk size
    - flag: root
 
-## Desktop Enviroment
+### DE/WM
 
-GNOME/Hyprland.
+First install GNOME from the ISO, then Hyprland from `install.sh`.
 
-## Note
-
-Install EndeavourOS with GNOME desktop, then run the installation script.
-
-##  My neofetch
+## Neofetch
 
 Current setup
 

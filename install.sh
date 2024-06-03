@@ -108,7 +108,7 @@ if [ "$install_hypr" -eq 1 ] && [ "$install_theming" -eq 1 ]; then
     _next_section
     figlet my-hypr
     if _prompt_proceed "\n:: Install my Hyprland configs."; then
-        git clone https://github.com/hank-chouu/my-hypr $HOME/my-hypr
+        git clone https://github.com/hengtsechou/my-hypr $HOME/my-hypr
         source ./setup/symlinks.sh
     fi
 fi
@@ -134,7 +134,7 @@ fi
 _next_section
 figlet bin
 if _prompt_proceed "\n:: Install my executables."; then
-    git clone https://github.com/hank-chouu/my-bin $HOME/bin
+    git clone https://github.com/hengtsechou/my-bin $HOME/bin
 fi
 
 # git configs
