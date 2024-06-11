@@ -1,7 +1,6 @@
 packagesPacman=(
     "brightnessctl"
     "cliphist"
-    "dunst"
     "eza"
     "grim"
     "gum"
@@ -15,11 +14,13 @@ packagesPacman=(
     "slurp"
     "starship"
     "swappy"
+    "swaync"
     "waybar"
     "xdg-desktop-portal-hyprland"
 );
 
 packagesYay=(
-    "wlogout"
     "indicator-sound-switcher"
+    "swayosd-git"
+    "wlogout"
 );
