@@ -2,7 +2,6 @@ packagesPacman=(
     "clang"
     "cmake"
     "docker"
-    "electron28"
     "jupyter-notebook"
     "github-cli"
     "go"

@@ -4,6 +4,7 @@ packagesPacman=(
     "gnome-browser-connector"
     "gnome-logs"
     "gnome-shell-extensions"
+    "nwg-look"
     "polkit-gnome"
     "sushi"
 );
@@ -11,5 +12,4 @@ packagesPacman=(
 packagesYay=(
     "gdm-settings"
     "nautilus-open-any-terminal"
-    "nwg-look-bin"
 );

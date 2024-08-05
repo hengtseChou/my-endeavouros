@@ -9,6 +9,7 @@ packagesPacman=(
     "hyprlock"
     "hyprpaper"
     "imagemagick"
+    "pamixer"
     "python-pywal"
     "rofi-wayland"
     "slurp"
@@ -20,7 +21,6 @@ packagesPacman=(
 );
 
 packagesYay=(
-    "indicator-sound-switcher"
-    "swayosd-git"
+    "avzio"
     "wlogout"
 );
